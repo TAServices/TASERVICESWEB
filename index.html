@@ -1,28 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>T&A Services</title>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T&A Services — Residential Restoration</title>
+  <meta name="description" content="T&A Services provides 24/7 water, mold, and weather damage restoration for homes. Fast response. Certified technicians." />
+  <link rel="icon" href="https://i.ibb.co/ns81rjZt/T-ALOGONo-Back-Ground.png" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="logo">T&A Services</div>
-    <a href="tel:17575678687" class="call-btn">Call (757) 567-8687</a>
-    <button class="menu-toggle">☰</button>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <img class="brand-logo" src="https://i.ibb.co/ns81rjZt/T-ALOGONo-Back-Ground.png" alt="T&A Services logo" />
+        <div class="brand-name">T&A Services</div>
+      </a>
+      <nav class="navlinks">
+        <a href="#services">Services</a>
+        <a href="#steps">How it works</a>
+        <a href="#why">Why us</a>
+        <a href="#contact">Request Service</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn alt" href="tel:+17575678687">Call (757) 567-8687</a>
+        <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#services" onclick="toggleMenu()">Services</a>
+      <a href="#steps" onclick="toggleMenu()">How it works</a>
+      <a href="#why" onclick="toggleMenu()">Why us</a>
+      <a href="#contact" onclick="toggleMenu()">Request Service</a>
+    </div>
   </header>
 
-  <main>
-    <section class="request-service">
-      <h2>Request Service</h2>
-      <p>Tell us what happened. We’ll respond quickly with next steps.</p>
-      <ul>
-        <li><strong>Address:</strong> 929 Rudee Ct, Virginia Beach, VA 23451</li>
-        <li><strong>Email:</strong> <a href="mailto:TAServices757@gmail.com">TAServices757@gmail.com</a></li>
-        <li><strong>Phone:</strong> <a href="tel:17575678687">(757) 567-8687</a></li>
-      </ul>
-    </section>
-  </main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <span class="chip">24/7 Emergency Response</span>
+        <h1>Residential Restoration Services</h1>
+        <p>Water, mold, and storm damage—restored safely and fast. Certified technicians. Insurance-friendly. Local to Virginia Beach.</p>
+        <div class="badges">
+          <span class="chip">Certified Techs</span>
+          <span class="chip">Insurance Assistance</span>
+          <span class="chip">Fast Arrival</span>
+        </div>
+        <a class="btn" href="#contact">Request Service</a>
+      </div>
+      <div class="hero-card">
+        <h3 style="margin:0 0 .4rem">Get Help Now</h3>
+        <!-- Formspree-connected form (AJAX) -->
+        <form class="lead-form" id="leadForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
+          <input type="hidden" name="_subject" value="TAWaterServices — New Request">
+          <input type="text" name="_honeypot" style="display:none">
+          <div class="row">
+            <input required name="name" aria-label="Full name" placeholder="Full name*" />
+            <input required name="phone" aria-label="Phone" placeholder="Phone*" />
+          </div>
+          <div class="row">
+            <input name="email" aria-label="Email" placeholder="Email" type="email" />
+            <select name="service" aria-label="Service needed">
+              <option value="">Service needed</option>
+              <option>Water Damage</option>
+              <option>Mold Remediation</option>
+              <option>Storm / Weather</option>
+              <option>Bio / Odor</option>
+            </select>
+          </div>
+          <input name="address" aria-label="Address" placeholder="Address / City" />
+          <textarea name="details" rows="3" placeholder="Briefly describe the damage"></textarea>
+          <small>By submitting, you agree to be contacted about your request.</small>
+          <button class="btn alt" type="submit">Submit Request</button>
+          <div class="note" id="leadNote" role="status" aria-live="polite" style="display:none"></div>
+        </form>
+      </div>
+    </div>
+    <div class="container" style="padding-bottom:30px">
+      <div class="hero-illus" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2>Restoration Services</h2>
+      <div class="grid cols-3">
+        <article class="card">
+          <div class="thumb" style="background:url('https://images.unsplash.com/photo-1523419409543-a7ea49fa3da6?q=80&w=1400&auto=format&fit=crop') center/cover"></div>
+          <h3>Water Damage</h3>
+          <p>Extraction, drying, dehumidification, and structural repairs to stop secondary damage.</p>
+          <div class="actions"><a class="btn" href="#contact">Get Help</a></div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background:url('https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=1400&auto=format&fit=crop') center/cover"></div>
+          <h3>Mold Remediation</h3>
+          <p>Inspection, containment, HEPA filtration, and removal by trained professionals.</p>
+          <div class="actions"><a class="btn" href="#contact">Get Help</a></div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background:url('https://images.unsplash.com/photo-1505832018823-50331d70d237?q=80&w=1400&auto=format&fit=crop') center/cover"></div>
+          <h3>Weather Damage</h3>
+          <p>Storm, wind, and flood response with emergency board-up and tarping.</p>
+          <div class="actions"><a class="btn" href="#contact">Get Help</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three steps -->
+  <section id="steps" class="section" style="background:#f1fbfc">
+    <div class="container">
+      <h2>Three Steps to Recovery</h2>
+      <div class="grid">
+        <div class="step">
+          <div class="dot">1</div>
+          <div>
+            <h3 style="margin:.2rem 0">Assessment</h3>
+            <p class="muted">We inspect, document, and estimate the scope to plan a safe, efficient restoration.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">2</div>
+          <div>
+            <h3 style="margin:.2rem 0">Mitigation</h3>
+            <p class="muted">We prevent further damage with dry-out, cleaning, and stabilization measures.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">3</div>
+          <div>
+            <h3 style="margin:.2rem 0">Restoration</h3>
+            <p class="muted">We return your property to pre-loss condition and help navigate insurance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section id="why" class="section" style="background:#fff7d1">
+    <div class="container">
+      <h2>Why Choose T&amp;A Services</h2>
+      <div class="grid cols-4">
+        <div class="card">
+          <div class="icon">✓</div>
+          <h3>Certified &amp; Trained</h3>
+          <p>Experienced crews using pro-grade equipment and best practices.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📄</div>
+          <h3>Insurance Friendly</h3>
+          <p>We document thoroughly and help you move faster with your claim.</p>
+        </div>
+        <div class="card">
+          <div class="icon">⏱</div>
+          <h3>Available 24/7</h3>
+          <p>Emergency response when you need it—day or night.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🤝</div>
+          <h3>Trusted Advisor</h3>
+          <p>Clear communication, from estimate to completion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / CTA -->
+  <section id="contact" class="section">
+    <div class="container" style="display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center">
+      <div>
+        <h2>Request Service</h2>
+        <p class="muted">Tell us what happened. We’ll respond quickly with next steps.</p>
+        <ul style="line-height:1.9;color:var(--muted)">
+          <li>Address: 929 Rudee Ct, Virginia Beach, VA 23451</li>
+          <li>Email: <a href="mailto:TAServices757@gmail.com">TAServices757@gmail.com</a></li>
+          <li>Phone: <a href="tel:+17575678687">(757) 567-8687</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 .4rem">Quick Contact</h3>
+        <!-- Formspree-connected form (AJAX) -->
+        <form class="lead-form" id="contactForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
+          <input type="hidden" name="_subject" value="TAWaterServices — Quick Contact">
+          <input type="text" name="_honeypot" style="display:none">
+          <div class="row">
+            <input required name="name" placeholder="Full name*" />
+            <input required name="phone" placeholder="Phone*" />
+          </div>
+          <div class="row">
+            <input name="email" type="email" placeholder="Email" />
+            <select name="service">
+              <option value="">Service needed</option>
+              <option>Water Damage</option>
+              <option>Mold</option>
+              <option>Weather</option>
+              <option>Bio / Odor</option>
+            </select>
+          </div>
+          <textarea name="message" rows="3" placeholder="How can we help?"></textarea>
+          <button class="btn" type="submit">Send</button>
+          <div id="formNote" class="note" role="status" aria-live="polite" style="display:none"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div>
+        <div class="brand" style="margin-bottom:8px">
+          <img class="brand-logo" src="https://i.ibb.co/ns81rjZt/T-ALOGONo-Back-Ground.png" alt="T&A Services logo small" />
+          <div class="brand-name">T&A Services</div>
+        </div>
+        <small>Residential Restoration • Water • Mold • Weather</small>
+      </div>
+      <div>
+        <strong>Company</strong><br/>
+        <a href="#services">Services</a><br/>
+        <a href="#why">Why us</a><br/>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <strong>Contact</strong><br/>
+        <a href="tel:+17575678687">(757) 567-8687</a><br/>
+        <a href="mailto:TAServices757@gmail.com">TAServices757@gmail.com</a><br/>
+        Virginia Beach, VA
+      </div>
+    </div>
+    <div class="bar">
+      <div class="container">© <span id="yr"></span> T&A Services. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle mobile menu
+    function toggleMenu(){
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    // AJAX submit for any form marked data-formspree
+    document.querySelectorAll('form[data-formspree]').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const note = form.querySelector('.note') || document.getElementById('formNote') || document.getElementById('leadNote');
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+          });
+          if (res.ok) {
+            if (note) { note.textContent = "Thanks! We’ll be in touch shortly."; note.style.display = 'block'; note.style.color = '#0e9f6e'; }
+            form.reset();
+          } else {
+            if (note) { note.textContent = "Sorry—couldn’t send. Try again or call (757) 567-8687."; note.style.display = 'block'; note.style.color = '#d64545'; }
+          }
+        } catch (err) {
+          if (note) { note.textContent = "Network error—please try again or call us."; note.style.display = 'block'; note.style.color = '#d64545'; }
+        }
+      });
+    });
+
+    // Footer year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
