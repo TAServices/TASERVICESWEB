@@ -145,3 +145,47 @@ footer a{color:#e9fcff}
 .foot .brand-name{color:#fff}
 .bar{border-top:1px solid rgba(255,255,255,.12);padding:10px 20px;color:#a9c2c5}
 @media (max-width:900px){.foot{grid-template-columns:1fr}}
+
+/* ===== T&A Services — Mobile/Zoom Fixes (append) ===== */
+
+/* Safety: prevent side-scroll on zoom & make media fluid */
+html, body { width: 100%; overflow-x: hidden; }
+img, video { max-width: 100%; height: auto; }
+
+/* Header: allow wrapping and keep layout tidy on mobile */
+@media (max-width: 900px) {
+  /* Let the main nav bar wrap to 2 rows if needed */
+  .nav {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: calc(8px + env(safe-area-inset-top));
+  }
+
+  /* Keep brand flexible so it doesn’t push other items off */
+  .brand { flex: 1 1 auto; min-width: 0; }
+
+  /* Put the Call button on its own row, full width */
+  .nav-cta {
+    order: 3;               /* moves below logo/hamburger */
+    width: 100%;
+    display: flex;
+  }
+  .nav-cta .btn {
+    flex: 1 0 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Form: stack inputs on phones so they align cleanly */
+@media (max-width: 720px) {
+  .lead-form .row {
+    grid-template-columns: 1fr;  /* from 2 cols -> 1 col */
+  }
+}
+
+/* Optional: if anything still overflows, clamp big grids */
+@media (max-width: 720px) {
+  .grid { gap: 16px; }
+  .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; }
+}
