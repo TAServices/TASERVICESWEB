@@ -1,0 +1,90 @@
+/* === T&A Services Mobile Patch (non-destructive) ===
+   Place this link AFTER your main stylesheet so it overrides safely.
+   It only applies at <= 767px and class-agnostic selectors as much as possible.
+*/
+
+/* Base fluid fixes */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+img, video { max-width: 100%; height: auto; display: block; }
+svg { max-width: 100%; height: auto; }
+
+/* Prevent horizontal scroll from stray widths */
+html, body { width: 100%; overflow-x: hidden; }
+
+/* Container sizing: respects existing classes like .container/.wrap/.inner */
+.container, .wrap, .inner, .site-width, header .container, .navbar .container {
+  margin-inline: auto;
+  max-width: 1200px;
+  padding-inline: clamp(12px, 3vw, 24px);
+}
+
+/* Typography wrapping to avoid overflow */
+h1, h2, h3, .title, .headline { overflow-wrap: anywhere; word-break: break-word; }
+
+/* Phone & email links never overflow */
+a[href^="tel:"], a[href^="mailto:"] { white-space: nowrap; }
+
+/* ====== Mobile rules ====== */
+@media (max-width: 767px) {
+
+  /* Make most header bars flex & allow wrap */
+  header, .site-header, .topbar, .navbar, .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: calc(10px + env(safe-area-inset-top));
+  }
+
+  /* Put the call button on its own row, full width */
+  header a[href^="tel:"],
+  .site-header a[href^="tel:"],
+  .navbar a[href^="tel:"],
+  .header a[href^="tel:"] {
+    order: 3 !important;
+    flex: 1 0 100% !important;
+    display: block;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 14px;
+  }
+
+  /* Stack common column classes */
+  .row, .columns, .cols, .grid { display: flex; flex-wrap: wrap; gap: 16px 12px; }
+  [class*="col-"], .column, .col, .half, .third, .quarter {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 0 100% !important;
+  }
+
+  /* Images/hero banners fit screen */
+  .hero, .banner, .masthead {
+    background-size: cover;
+    background-position: center;
+    min-height: min(60vh, 520px);
+  }
+  .hero img, .banner img { width: 100%; height: auto; }
+
+  /* Tables & forms scroll nicely without breaking layout */
+  .table-wrap, .scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; }
+
+  /* Reduce huge paddings/margins that cause misalignment */
+  .section, section, main, .content {
+    padding-inline: clamp(12px, 4vw, 20px);
+  }
+
+  /* Floating widgets that overlap header on phones */
+  .quick-contact, .floating-widget, .sticky-call, .fab {
+    bottom: 16px; right: 16px;
+    max-width: 90px;
+    z-index: 98;
+  }
+}
+
+/* Optional: safe-guard for super small devices */
+@media (max-width: 360px) {
+  body { font-size: 15px; }
+}
