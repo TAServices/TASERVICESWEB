@@ -10,6 +10,23 @@
   <link rel="stylesheet" href="style.css?v=4">
   <link rel="stylesheet" href="ta-mobile-fixes.css?v=1">
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const qc = document.querySelector(".quick-contact");
+  const requestSection = document.querySelector("#contact");
+
+  function moveQuickContact() {
+    if (window.innerWidth <= 900) {
+      if (qc && requestSection && !requestSection.nextElementSibling?.classList.contains("quick-contact")) {
+        requestSection.insertAdjacentElement("afterend", qc);
+      }
+    }
+  }
+
+  moveQuickContact();
+  window.addEventListener("resize", moveQuickContact);
+});
+</script>
 <body>
   <!-- Header -->
   <header>
