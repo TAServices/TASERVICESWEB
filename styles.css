@@ -293,3 +293,35 @@ img, video { max-width: 100%; height: auto; }
     cursor: pointer;
   }
 }
+/* ===== Contact section: make it 1 column on mobile & place Quick Contact after ===== */
+@media (max-width: 900px) {
+  /* 1) Stack the contact grid to a single column (overrides inline style) */
+  #contact .container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    align-items: start !important;
+  }
+
+  /* 2) Ensure the text block shows first, card (quick-contact) shows second */
+  #contact .container > div:first-child { order: 1; }
+  #contact .container .quick-contact     { order: 2; }
+
+  /* 3) Make the quick-contact card breathe on mobile */
+  .quick-contact {
+    width: 100%;
+    max-width: 100%;
+    margin: 8px 0 0;
+  }
+
+  .quick-contact .lead-form .row {
+    grid-template-columns: 1fr !important; /* inputs stack */
+  }
+
+  .quick-contact input,
+  .quick-contact select,
+  .quick-contact textarea,
+  .quick-contact button {
+    width: 100%;
+  }
+}
