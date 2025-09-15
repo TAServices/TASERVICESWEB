@@ -248,3 +248,48 @@ img, video { max-width: 100%; height: auto; }
     font-weight: 600;
   }
 }
+/* --- Quick Contact: mobile layout --- */
+@media (max-width: 900px) {
+  .quick-contact {
+    position: static !important;    /* no fixed/absolute float */
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 30px auto;              /* spacing above/below */
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    background: #fff;
+  }
+
+  /* Title clean */
+  .quick-contact h3,
+  .quick-contact .title {
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  /* Fields stack full-width */
+  .quick-contact input,
+  .quick-contact textarea,
+  .quick-contact select,
+  .quick-contact button {
+    width: 100%;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .quick-contact button {
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+}
