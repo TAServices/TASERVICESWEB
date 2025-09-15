@@ -208,3 +208,43 @@ img, video { max-width: 100%; height: auto; }
     max-width: 90%;            /* avoids edge-to-edge */
   }
 }
+/* --- Quick Contact mobile fixes --- */
+@media (max-width: 900px) {
+  .quick-contact {
+    position: static;       /* no floating on mobile */
+    width: 100%;            /* span full width */
+    max-width: none;
+    margin: 20px auto;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    background: #fff;
+  }
+
+  .quick-contact h3,
+  .quick-contact .title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .quick-contact input,
+  .quick-contact textarea,
+  .quick-contact select,
+  .quick-contact button {
+    width: 100% !important;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .quick-contact button {
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius);
+    font-weight: 600;
+  }
+}
