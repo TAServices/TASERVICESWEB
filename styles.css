@@ -99,7 +99,7 @@ header{
   border-radius: var(--radius);
   background:
     linear-gradient(140deg, rgba(255,209,0,.25), rgba(255,209,0,0)) ,
-    url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    url('./assets/stock.jpeg') center/cover no-repeat;
   border:1px solid rgba(0,0,0,.06);
   box-shadow:var(--shadow);
 }
