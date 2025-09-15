@@ -53,8 +53,10 @@
       </div>
       <div class="hero-card">
         <h3 style="margin:0 0 .4rem">Get Help Now</h3>
-        <!-- Add a real action URL (e.g., Formspree) if you want server-side processing -->
-        <form class="lead-form" id="leadForm" method="POST" action="" onsubmit="submitLead(event)">
+        <!-- Formspree-connected form (AJAX) -->
+        <form class="lead-form" id="leadForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
+          <input type="hidden" name="_subject" value="TAWaterServices — New Request">
+          <input type="text" name="_honeypot" style="display:none">
           <div class="row">
             <input required name="name" aria-label="Full name" placeholder="Full name*" />
             <input required name="phone" aria-label="Phone" placeholder="Phone*" />
@@ -73,7 +75,7 @@
           <textarea name="details" rows="3" placeholder="Briefly describe the damage"></textarea>
           <small>By submitting, you agree to be contacted about your request.</small>
           <button class="btn alt" type="submit">Submit Request</button>
-          <div class="note" id="leadNote" role="status" aria-live="polite"></div>
+          <div class="note" id="leadNote" role="status" aria-live="polite" style="display:none"></div>
         </form>
       </div>
     </div>
@@ -182,7 +184,10 @@
       </div>
       <div class="card">
         <h3 style="margin:0 0 .4rem">Quick Contact</h3>
-        <form class="lead-form" id="contactForm" method="POST" action="" onsubmit="submitContact(event)">
+        <!-- Formspree-connected form (AJAX) -->
+        <form class="lead-form" id="contactForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
+          <input type="hidden" name="_subject" value="TAWaterServices — Quick Contact">
+          <input type="text" name="_honeypot" style="display:none">
           <div class="row">
             <input required name="name" placeholder="Full name*" />
             <input required name="phone" placeholder="Phone*" />
@@ -199,7 +204,7 @@
           </div>
           <textarea name="message" rows="3" placeholder="How can we help?"></textarea>
           <button class="btn" type="submit">Send</button>
-          <div id="formNote" class="note" role="status" aria-live="polite"></div>
+          <div id="formNote" class="note" role="status" aria-live="polite" style="display:none"></div>
         </form>
       </div>
     </div>
@@ -239,19 +244,28 @@
       document.getElementById('mobileMenu').classList.toggle('open');
     }
 
-    // Simple client-side “submission” messages
-    function submitLead(e){
-      e.preventDefault();
-      document.getElementById('leadNote').textContent = "Thanks! We’ll be in touch shortly.";
-      document.getElementById('leadNote').style.display = 'block';
-      e.target.reset();
-    }
-    function submitContact(e){
-      e.preventDefault();
-      document.getElementById('formNote').textContent = "Thanks! We’ll be in touch shortly.";
-      document.getElementById('formNote').style.display = 'block';
-      e.target.reset();
-    }
+    // AJAX submit for any form marked data-formspree
+    document.querySelectorAll('form[data-formspree]').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const note = form.querySelector('.note') || document.getElementById('formNote') || document.getElementById('leadNote');
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+          });
+          if (res.ok) {
+            if (note) { note.textContent = "Thanks! We’ll be in touch shortly."; note.style.display = 'block'; note.style.color = '#0e9f6e'; }
+            form.reset();
+          } else {
+            if (note) { note.textContent = "Sorry—couldn’t send. Try again or call (757) 567-8687."; note.style.display = 'block'; note.style.color = '#d64545'; }
+          }
+        } catch (err) {
+          if (note) { note.textContent = "Network error—please try again or call us."; note.style.display = 'block'; note.style.color = '#d64545'; }
+        }
+      });
+    });
 
     // Footer year
     document.getElementById('yr').textContent = new Date().getFullYear();

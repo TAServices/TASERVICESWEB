@@ -76,11 +76,11 @@ header{
 .hero{
   position:relative;
   background:
-    radial-gradient(70% 70% at 10% 10%, rgba(0,163,173,.10) 0%, rgba(0,163,173,0) 60%),
+    radial-gradient(70% 70% at 10% 10%, rgba(0,163,173,.10) 0%, rgba(0,0,0,0) 60%),
     linear-gradient(180deg, #ffffff 0%, #f2fbfc 100%);
   overflow:hidden;
 }
-.hero-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:72px 0} /* +12px padding top/bottom */
+.hero-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:72px 0}
 .hero h1{font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.08;margin:.4rem 0}
 .hero p{color:var(--muted);font-size:1.05rem}
 .hero .badges{display:flex;flex-wrap:wrap;gap:10px;margin:1rem 0 1.2rem}
