@@ -9,7 +9,10 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="styles.css?v=5">
   <link rel="stylesheet" href="ta-mobile-fixes.css?v=2">
-  
+
+  <!-- NEW: canonical -->
+  <link rel="canonical" href="https://tawaterservices.com/">
+
   <!-- Open Graph / Social Default -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tawaterservices.com/">
@@ -17,13 +20,47 @@
   <meta property="og:description" content="24/7 water damage restoration, storm cleanup, and handyman services across Hampton Roads, VA. Free estimates.">
   <meta property="og:image" content="https://tawaterservices.com/assets/og-default.png">
 
-<!-- Twitter Card -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="T&A Services — Water Damage Mitigation in Hampton Roads, VA">
   <meta name="twitter:description" content="Fast, reliable restoration and handyman services in Hampton Roads, VA. Call for a free estimate.">
   <meta name="twitter:image" content="https://tawaterservices.com/assets/og-default.png">
 
+  <!-- NEW: JSON-LD LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "T&A Services",
+    "url": "https://tawaterservices.com/",
+    "logo": "https://tawaterservices.com/assets/T&ALOGONoBackGround.png",
+    "email": "mailto:TAServices757@gmail.com",
+    "telephone": "+1-757-567-8687",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "929 Rudee Ct",
+      "addressLocality": "Virginia Beach",
+      "addressRegion": "VA",
+      "postalCode": "23451",
+      "addressCountry": "US"
+    },
+    "areaServed": ["Hampton Roads, VA","Virginia Beach, VA","Norfolk, VA","Chesapeake, VA","Newport News, VA","Hampton, VA","Portsmouth, VA","Suffolk, VA"],
+    "image": "https://tawaterservices.com/assets/og-default.png",
+    "priceRange": "$$"
+  }
+  </script>
+
+  <!-- NEW: JSON-LD WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://tawaterservices.com/",
+    "name": "T&A Services"
+  }
+  </script>
 </head>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const qc = document.querySelector(".quick-contact");
@@ -41,11 +78,13 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", moveQuickContact);
 });
 </script>
+
 <body>
   <!-- Header -->
   <header>
     <div class="container nav">
-      <a class="brand" href="#">
+      <!-- CHANGED: href to / for home -->
+      <a class="brand" href="/">
         <img class="brand-logo" src="https://i.ibb.co/ns81rjZt/T-ALOGONo-Back-Ground.png" alt="T&A Services logo" />
         <div class="brand-name">T&A Services</div>
       </a>
@@ -126,7 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="thumb" style="background:url('https://images.unsplash.com/photo-1523419409543-a7ea49fa3da6?q=80&w=1400&auto=format&fit=crop') center/cover"></div>
           <h3>Water Damage</h3>
           <p>Extraction, drying, dehumidification, and structural repairs to stop secondary damage.</p>
-          <div class="actions"><a class="btn" href="#contact">Get Help</a></div>
+          <!-- CHANGED: point to your service URL for stronger internal link -->
+          <div class="actions"><a class="btn" href="/water-damage">Learn More</a></div>
         </article>
         <article class="card">
           <div class="thumb" style="background:url('https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=1400&auto=format&fit=crop') center/cover"></div>
