@@ -325,3 +325,30 @@ img, video { max-width: 100%; height: auto; }
     width: 100%;
   }
 }
+
+
+/* --- Simple gallery --- */
+.ta-gallery{position:relative;background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:10px}
+.ta-gallery .g-viewport{position:relative;overflow:hidden;border-radius:10px}
+.ta-gallery .g-slide{margin:0;display:none;transition:opacity .35s ease}
+.ta-gallery .g-slide.is-active{display:block}
+.ta-gallery img{width:100%;height:auto;display:block}
+.ta-gallery figcaption{font-size:.9rem;color:var(--muted,#5a6b6e);padding:8px 6px}
+
+.ta-gallery .g-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:#fff;border:1px solid #e5e7eb;border-radius:999px;
+  width:38px;height:38px;display:grid;place-items:center;cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+.ta-gallery .g-prev{left:8px}
+.ta-gallery .g-next{right:8px}
+
+.ta-gallery .g-dots{display:flex;gap:6px;justify-content:center;margin:10px 0 2px}
+.ta-gallery .g-dots button{
+  width:8px;height:8px;border-radius:999px;border:0;background:#d1d5db;cursor:pointer
+}
+.ta-gallery .g-dots button[aria-selected="true"]{background:#00a3ad}
+@media (max-width:700px){
+  .ta-gallery .g-btn{display:none} /* tap/swipe on mobile */
+}
