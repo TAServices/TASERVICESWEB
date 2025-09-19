@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="container nav">
       <!-- CHANGED: href to / for home -->
       <a class="brand" href="/">
-        <img class="brand-logo" src="https://i.ibb.co/ns81rjZt/T-ALOGONo-Back-Ground.png" alt="T&A Services logo" />
+        <img class="brand-logo" src="./assets/logo" alt="T&A Services logo" />
         <div class="brand-name">T&A Services</div>
       </a>
       <nav class="navlinks">
@@ -256,27 +256,16 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="ta-gallery" data-autoplay="false">
       <button class="g-btn g-prev" aria-label="Previous slide">‹</button>
 
-      <div class="g-viewport">
-        <figure class="g-slide is-active">
-          <img src="./assets/gallery/1.jpeg" loading="lazy" alt="Drying equipment set up in living room after water damage">
-          <figcaption>Emergency dry-out — Virginia Beach</figcaption>
-        </figure>
-        <figure class="g-slide">
-          <img src="./assets/gallery/2.jpeg" loading="lazy" alt="Moisture mapping and documentation for insurance">
-          <figcaption>Moisture mapping for insurance docs</figcaption>
-        </figure>
-        <figure class="g-slide">
-          <img src="./assets/gallery/3.jpeg" loading="lazy" alt="Clean and restored hallway after mitigation">
-          <figcaption>After mitigation — hallway</figcaption>
-        </figure>
+      <div class="g-viewport" id="galleryViewport">
+        <!-- JS will insert <figure> slides here -->
       </div>
 
       <button class="g-btn g-next" aria-label="Next slide">›</button>
-
       <div class="g-dots" aria-label="Slide navigation" role="tablist"></div>
     </div>
   </div>
 </section>
+
 
   
   <!-- Contact / CTA -->
@@ -435,6 +424,77 @@ document.addEventListener("DOMContentLoaded", function () {
       if (gal.dataset.autoplay === 'true'){
         setInterval(next, 5000);
       }
+    
+      update();
+    })();
+    
+    (function(){
+      const viewport = document.getElementById('galleryViewport');
+      if (!viewport) return;
+    
+      // Configure how many images you have
+      const totalImages = 10; // change this to the number of photos in /assets/gallery
+      const slides = [];
+    
+      for (let i = 1; i <= totalImages; i++) {
+        const fig = document.createElement('figure');
+        fig.className = 'g-slide';
+        if (i === 1) fig.classList.add('is-active');
+    
+        const img = document.createElement('img');
+        img.src = `./assets/gallery/${i}.jpg`; // assumes filenames: 1.jpg, 2.jpg...
+        img.loading = "lazy";
+        img.alt = `Gallery image ${i}`;
+    
+        const cap = document.createElement('figcaption');
+        cap.textContent = `Project ${i}`;
+    
+        fig.appendChild(img);
+        fig.appendChild(cap);
+        viewport.appendChild(fig);
+        slides.push(fig);
+      }
+    
+      // Now wire up navigation (same as before)
+      const gal = viewport.closest('.ta-gallery');
+      const prevBtn = gal.querySelector('.g-prev');
+      const nextBtn = gal.querySelector('.g-next');
+      const dotsWrap = gal.querySelector('.g-dots');
+      let i = 0;
+    
+      slides.forEach((_, idx)=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('role','tab');
+        b.setAttribute('aria-label', `Go to slide ${idx+1}`);
+        b.addEventListener('click', ()=>go(idx));
+        dotsWrap.appendChild(b);
+      });
+    
+      function update(){
+        slides.forEach((s,idx)=>s.classList.toggle('is-active', idx===i));
+        dotsWrap.querySelectorAll('button').forEach((d,idx)=>{
+          d.setAttribute('aria-selected', idx===i ? 'true' : 'false');
+        });
+      }
+      function go(n){ i = (n + slides.length) % slides.length; update(); }
+      function next(){ go(i+1); }
+      function prev(){ go(i-1); }
+    
+      slides.forEach(s => s.addEventListener('click', next));
+      if (nextBtn) nextBtn.addEventListener('click', next);
+      if (prevBtn) prevBtn.addEventListener('click', prev);
+    
+      gal.addEventListener('keydown', (e)=>{
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft') prev();
+      });
+      gal.setAttribute('tabindex','0');
+    
+      let startX = 0, dx = 0;
+      gal.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+      gal.addEventListener('touchmove',  e => { dx = e.touches[0].clientX - startX; }, {passive:true});
+      gal.addEventListener('touchend',   () => { if (dx < -40) next(); else if (dx > 40) prev(); dx = 0; });
     
       update();
     })();
