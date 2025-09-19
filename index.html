@@ -378,6 +378,67 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Footer year
     document.getElementById('yr').textContent = new Date().getFullYear();
+    
+    // --- Minimal, accessible gallery ---
+    (function(){
+      const gal = document.querySelector('.ta-gallery');
+      if (!gal) return;
+    
+      const slides = Array.from(gal.querySelectorAll('.g-slide'));
+      const prevBtn = gal.querySelector('.g-prev');
+      const nextBtn = gal.querySelector('.g-next');
+      const dotsWrap = gal.querySelector('.g-dots');
+      let i = slides.findIndex(s => s.classList.contains('is-active'));
+      if (i < 0) i = 0;
+    
+      // Build dots
+      slides.forEach((_, idx)=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('role','tab');
+        b.setAttribute('aria-label', `Go to slide ${idx+1}`);
+        b.addEventListener('click', ()=>go(idx));
+        dotsWrap.appendChild(b);
+      });
+    
+      function update(){
+        slides.forEach((s,idx)=>s.classList.toggle('is-active', idx===i));
+        dotsWrap.querySelectorAll('button').forEach((d,idx)=>{
+          d.setAttribute('aria-selected', idx===i ? 'true' : 'false');
+        });
+      }
+      function go(n){ i = (n + slides.length) % slides.length; update(); }
+      function next(){ go(i+1); }
+      function prev(){ go(i-1); }
+    
+      // Click image to advance
+      slides.forEach(s => s.addEventListener('click', next));
+    
+      // Buttons
+      if (nextBtn) nextBtn.addEventListener('click', next);
+      if (prevBtn) prevBtn.addEventListener('click', prev);
+    
+      // Keyboard
+      gal.addEventListener('keydown', (e)=>{
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft') prev();
+      });
+      gal.setAttribute('tabindex','0'); // focusable for keyboard
+    
+      // Touch swipe
+      let startX = 0, dx = 0;
+      gal.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+      gal.addEventListener('touchmove',  e => { dx = e.touches[0].clientX - startX; }, {passive:true});
+      gal.addEventListener('touchend',   () => { if (dx < -40) next(); else if (dx > 40) prev(); dx = 0; });
+    
+      // Optional autoplay
+      if (gal.dataset.autoplay === 'true'){
+        setInterval(next, 5000);
+      }
+    
+      update();
+    })();
+
   </script>
 </body>
 </html>
