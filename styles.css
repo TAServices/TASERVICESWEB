@@ -327,27 +327,30 @@ img, video { max-width: 100%; height: auto; }
 }
 
 
-/* Portrait gallery box that NEVER crops */
-.ta-gallery {
-  position: relative;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-  padding: 10px;
-  max-width: 560px;         /* keeps a nice phone-like column on desktop */
-  margin: 0 auto;           /* center it */
-}
-
 /* Gallery viewport auto-sizes to current slide */
 .ta-gallery .g-viewport{
   position: relative;
   overflow: hidden;
   border-radius: 10px;
   background: #f3f4f6;
-  display: grid;
   width: 100%;
-  aspect-ratio: 3 / 4;      /* main portrait frame */
-  min-height: 320px;        /* safety: guarantees visible height on desktop */
+  height: auto;                 /* JS will set height explicitly */
+  transition: height .25s ease; /* smooth resize between slides */
+  min-height: 200px;            /* prevents 0px flash before first image loads */
+}
+
+/* Slides/images: no crop, keep ratio */
+.ta-gallery .g-slide{ margin:0; display:none }
+.ta-gallery .g-slide.is-active{ display:block }
+.ta-gallery img{
+  width:100%;
+  height:100%;
+  object-fit: contain;          /* never crop */
+  object-position:center;
+  display:block;
+  image-orientation: from-image;/* fix iPhone rotation */
+}
+
 
 /* If you prefer taller phone frame, use 9/16:
 .ta-gallery .g-viewport { aspect-ratio: 9 / 16; }
