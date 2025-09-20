@@ -507,6 +507,129 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })();
 
+    /* Auto-build gallery from existing files.
+       Tries 1..50 with extensions: .jpg, .jpeg, .png, .webp
+       Only adds slides that actually load (no empty slots). */
+    (function(){
+      const basePath = './assets/gallery/';           // folder where your photos live
+      const candidateNames = Array.from({length:50}, (_,i)=> String(i+1)); // 1..50
+      const exts = ['jpg','jpeg','png','webp'];       // try in this order
+    
+      const viewport = document.getElementById('galleryViewport');
+      const gallery  = viewport?.closest('.ta-gallery');
+      if (!viewport || !gallery) return;
+    
+      const prevBtn = gallery.querySelector('.g-prev');
+      const nextBtn = gallery.querySelector('.g-next');
+      const dotsWrap = gallery.querySelector('.g-dots');
+    
+      function canLoad(url){
+        return new Promise(resolve => {
+          const img = new Image();
+          img.onload  = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = url;
+        });
+      }
+    
+      async function firstExistingURL(stem){           // e.g., stem = "1" → try 1.jpg, 1.jpeg, ...
+        for (const ext of exts){
+          const url = `${basePath}${stem}.${ext}`;
+          if (await canLoad(url)) return url;
+        }
+        return null;
+      }
+    
+      (async function build(){
+        const urls = [];
+        let consecutiveMisses = 0;
+    
+        for (const name of candidateNames){
+          const url = await firstExistingURL(name);
+          if (url){
+            urls.push(url);
+            consecutiveMisses = 0;
+          } else {
+            consecutiveMisses++;
+            // If we've already found some images and then hit 5 misses in a row, stop scanning
+            if (urls.length > 0 && consecutiveMisses >= 5) break;
+          }
+        }
+    
+        // If nothing found, hide the gallery section gracefully
+        if (urls.length === 0){
+          const section = document.getElementById('gallery') || gallery.closest('section');
+          if (section) section.style.display = 'none';
+          return;
+        }
+    
+        // Build slides only for existing images
+        const slides = urls.map((src, idx) => {
+          const fig = document.createElement('figure');
+          fig.className = 'g-slide' + (idx===0 ? ' is-active' : '');
+    
+          const img = document.createElement('img');
+          img.src = src;
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.alt = `Project photo ${idx+1}`;
+    
+          const cap = document.createElement('figcaption');
+          cap.textContent = `Project ${idx+1}`;
+    
+          fig.appendChild(img);
+          fig.appendChild(cap);
+          viewport.appendChild(fig);
+          return fig;
+        });
+    
+        // Build dots
+        urls.forEach((_, idx) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.setAttribute('role', 'tab');
+          b.setAttribute('aria-label', `Go to slide ${idx+1}`);
+          b.addEventListener('click', () => go(idx));
+          dotsWrap.appendChild(b);
+        });
+    
+        // Navigation logic
+        let i = 0;
+        function update(){
+          slides.forEach((s,idx)=> s.classList.toggle('is-active', idx===i));
+          dotsWrap.querySelectorAll('button').forEach((d,idx)=>{
+            d.setAttribute('aria-selected', idx===i ? 'true' : 'false');
+          });
+        }
+        function go(n){ i = (n + slides.length) % slides.length; update(); }
+        function next(){ go(i+1); }
+        function prev(){ go(i-1); }
+    
+        slides.forEach(s => s.addEventListener('click', next));
+        if (nextBtn) nextBtn.addEventListener('click', next);
+        if (prevBtn) prevBtn.addEventListener('click', prev);
+    
+        // Keyboard
+        gallery.addEventListener('keydown', (e)=>{
+          if (e.key === 'ArrowRight') next();
+          if (e.key === 'ArrowLeft')  prev();
+        });
+        gallery.setAttribute('tabindex','0');
+    
+        // Touch swipe
+        let startX = 0, dx = 0;
+        gallery.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+        gallery.addEventListener('touchmove',  e => { dx = e.touches[0].clientX - startX; }, {passive:true});
+        gallery.addEventListener('touchend',   () => { if (dx < -40) next(); else if (dx > 40) prev(); dx = 0; });
+    
+        update();
+      })();
+    })();
+
+
+
+
+    
   </script>
 </body>
 </html>
