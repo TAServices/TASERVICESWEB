@@ -438,10 +438,26 @@ img, video { max-width: 100%; height: auto; }
 
 /* Smaller gallery variant */
 .ta-gallery--sm {
-  max-width: 420px;      /* adjust this number to taste: 360–480px looks nice */
-  margin: 0 auto;        /* center on desktop */
-  padding: 8px;          /* a bit tighter padding */
+  max-width: 420px;       /* fixed size for desktop */
+  margin: 0 auto;         /* center horizontally */
+  padding: 8px;
 }
+
+/* On wide screens, don’t let it blow up */
+@media (min-width: 901px) {
+  .ta-gallery--sm {
+    width: 100%;
+    max-width: 420px;     /* clamp gallery width on desktop */
+  }
+}
+
+/* Let it go full-width on mobile for better fit */
+@media (max-width: 900px) {
+  .ta-gallery--sm {
+    max-width: 100%;
+  }
+}
+
 
 /* Keep portrait frame; height scales with width automatically */
 .ta-gallery--sm .g-viewport {
