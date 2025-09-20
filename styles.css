@@ -1,3 +1,4 @@
+
 :root{
   --brand: #00a3ad;       /* primary (teal-esque) */
   --brand-2: #ffd100;     /* accent (gold) */
@@ -327,47 +328,74 @@ img, video { max-width: 100%; height: auto; }
 }
 
 
-/* Gallery viewport auto-sizes to current slide */
-.ta-gallery .g-viewport{
+/* --- Simple gallery --- */
+.ta-gallery{position:relative;background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:10px}
+.ta-gallery .g-viewport{position:relative;overflow:hidden;border-radius:10px}
+.ta-gallery .g-slide{margin:0;display:none;transition:opacity .35s ease}
+.ta-gallery .g-slide.is-active{display:block}
+.ta-gallery img{width:100%;height:auto;display:block}
+.ta-gallery figcaption{font-size:.9rem;color:var(--muted,#5a6b6e);padding:8px 6px}
+
+.ta-gallery .g-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:#fff;border:1px solid #e5e7eb;border-radius:999px;
+  width:38px;height:38px;display:grid;place-items:center;cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+.ta-gallery .g-prev{left:8px}
+.ta-gallery .g-next{right:8px}
+
+.ta-gallery .g-dots{display:flex;gap:6px;justify-content:center;margin:10px 0 2px}
+.ta-gallery .g-dots button{
+  width:8px;height:8px;border-radius:999px;border:0;background:#d1d5db;cursor:pointer
+}
+.ta-gallery .g-dots button[aria-selected="true"]{background:#00a3ad}
+@media (max-width:700px){
+  .ta-gallery .g-btn{display:none} /* tap/swipe on mobile */
+}
+
+/* iPhone-friendly portrait gallery box (no crop) */
+.ta-gallery {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  padding: 10px;
+}
+
+/* The viewport keeps a portrait aspect ratio */
+.ta-gallery .g-viewport {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  background: #f3f4f6;
-  width: 100%;
-  height: auto;                 /* JS will set height explicitly */
-  transition: height .25s ease; /* smooth resize between slides */
-  min-height: 200px;            /* prevents 0px flash before first image loads */
+  background: #f3f4f6; /* subtle gray behind letterbox */
+  display: grid;
 }
 
-/* Slides/images: no crop, keep ratio */
-.ta-gallery .g-slide{ margin:0; display:none }
-.ta-gallery .g-slide.is-active{ display:block }
-.ta-gallery img{
-  width:100%;
-  height:100%;
-  object-fit: contain;          /* never crop */
-  object-position:center;
-  display:block;
-  image-orientation: from-image;/* fix iPhone rotation */
+/* Default 3:4 portrait frame */
+.ta-gallery[data-aspect="3:4"] .g-viewport { aspect-ratio: 3 / 4; }
+
+/* Optional 9:16 portrait frame (for very tall phone shots) */
+.ta-gallery[data-aspect="9:16"] .g-viewport { aspect-ratio: 9 / 16; }
+
+/* Slides */
+.ta-gallery .g-slide { 
+  margin: 0; 
+  display: none; 
 }
-
-
-/* If you prefer taller phone frame, use 9/16:
-.ta-gallery .g-viewport { aspect-ratio: 9 / 16; }
-*/
-
-.ta-gallery .g-slide { margin: 0; display: none; }
 .ta-gallery .g-slide.is-active { display: block; }
 
+/* Images fill the portrait box without cropping */
 .ta-gallery img {
   width: 100%;
   height: 100%;
-  object-fit: contain;       /* no crop */
-  object-position: center;
+  object-fit: contain;              /* no crop */
+  object-position: center;          /* centered */
   display: block;
-  image-orientation: from-image;
+  image-orientation: from-image;    /* respect iPhone EXIF rotation */
 }
 
+/* Caption */
 .ta-gallery figcaption {
   font-size: .9rem;
   color: var(--muted, #5a6b6e);
@@ -375,7 +403,7 @@ img, video { max-width: 100%; height: auto; }
   text-align: center;
 }
 
-/* Prev/next buttons & dots (unchanged) */
+/* Prev/next buttons */
 .ta-gallery .g-btn{
   position:absolute; top:50%; transform:translateY(-50%);
   background:#fff; border:1px solid #e5e7eb; border-radius:999px;
@@ -384,17 +412,26 @@ img, video { max-width: 100%; height: auto; }
 }
 .ta-gallery .g-prev{ left:8px }
 .ta-gallery .g-next{ right:8px }
+
+/* Dots */
 .ta-gallery .g-dots{ display:flex; gap:6px; justify-content:center; margin:10px 0 2px }
 .ta-gallery .g-dots button{
   width:8px; height:8px; border-radius:999px; border:0; background:#d1d5db; cursor:pointer
 }
 .ta-gallery .g-dots button[aria-selected="true"]{ background:#00a3ad }
 
-/* Mobile: hide arrows */
-@media (max-width:700px){ .ta-gallery .g-btn{ display:none } }
-
-/* -------- Fallback for older desktop browsers (forces portrait height) -------- */
-.ta-gallery.no-aspect .g-viewport::before{
-  content:""; display:block; padding-top: calc(100% * 4 / 3); /* 3:4 => 133.333% */
+/* Mobile: hide arrows (tap/swipe/drag to navigate) */
+@media (max-width:700px){
+  .ta-gallery .g-btn{ display:none }
 }
-.ta-gallery.no-aspect .g-viewport > *{ position:absolute; inset:0 }
+
+/* --- Optional fallback for very old browsers that lack aspect-ratio ---
+   Only needed if you see layout issues on older Safari/Android:
+.ta-gallery .g-viewport::before{
+  content:""; display:block; padding-top: calc(100% * 4 / 3);  /* 3:4 = 133.333% */
+}
+.ta-gallery[data-aspect="9:16"] .g-viewport::before{
+  padding-top: calc(100% * 16 / 9);
+}
+.ta-gallery .g-viewport > *{ position:absolute; inset:0 }
+*/
