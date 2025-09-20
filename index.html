@@ -498,6 +498,14 @@ document.addEventListener("DOMContentLoaded", function () {
     
       update();
     })();
+    (function(){
+      const gal = document.querySelector('.ta-gallery');
+      if (!gal) return;
+      const supportsAspect = CSS.supports && CSS.supports('aspect-ratio','1 / 1');
+      if (!supportsAspect) {
+        gal.classList.add('no-aspect');
+      }
+    })();
 
   </script>
 </body>
