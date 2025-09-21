@@ -207,3 +207,41 @@ footer a{color:#e9fcff}
 @media (max-width: 720px){
   .lead-form .row { grid-template-columns: 1fr; }
 }
+/* === Mobile breathing room === */
+@media (max-width: 600px) {
+  .container {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+  .hero-copy,
+  .section h2,
+  .section p,
+  .lead-form {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+/* === Mobile breathing room (text + forms) === */
+@media (max-width: 600px) {
+  .container {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .hero-copy,
+  .section h2,
+  .section p {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  /* Form inputs inset on mobile */
+  .lead-form input,
+  .lead-form select,
+  .lead-form textarea,
+  .lead-form button {
+    width: 100%;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+}
