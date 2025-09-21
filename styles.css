@@ -1,144 +1,109 @@
-
 :root{
-  --brand: #00a3ad;       /* primary (teal-esque) */
-  --brand-2: #ffd100;     /* accent (gold) */
-  --ink: #0b1b1d;
-  --muted: #5a6b6e;
-  --bg: #f7fafb;
-  --card: #ffffff;
-  --success: #0e9f6e;
-  --error: #d64545;
-  --radius: 14px;
-  --shadow: 0 10px 30px rgba(0,0,0,.08);
-  --maxw: 1200px;
+  --brand:#00a3ad;         /* primary (teal) */
+  --brand-2:#ffd100;       /* accent (gold) */
+  --ink:#0b1b1d;
+  --muted:#5a6b6e;
+  --bg:#f7fafb;
+  --card:#ffffff;
+  --success:#0e9f6e;
+  --error:#d64545;
+  --radius:14px;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --maxw:1200px;
 }
+
+/* Base */
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg)}
-img{max-width:100%;display:block}
+html,body{margin:0;padding:0;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);width:100%;overflow-x:hidden}
+img,video{max-width:100%;height:auto;display:block}
 a{color:var(--brand);text-decoration:none}
 .container{max-width:var(--maxw);margin:auto;padding:0 20px}
 
-/* ---------- Header (cleaned up) ---------- */
-header{
-  position:sticky;top:0;z-index:50;background:#fff;
-  border-bottom:1px solid rgba(0,0,0,.06)
-}
-.nav{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  height:70px;
-}
+/* Header */
+header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid rgba(0,0,0,.06)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
 .brand{display:flex;align-items:center;gap:.65rem;min-width:0}
-.brand-logo{width:100px;height:auto;display:block} /* bigger desktop logo */
+.brand-logo{width:100px;height:auto}
 .brand-name{font-weight:800;letter-spacing:.2px;white-space:nowrap}
-
 .navlinks{display:flex;gap:22px;align-items:center;flex:1;justify-content:center}
 .navlinks a{color:#23373a;font-weight:600;padding:6px 0}
 .navlinks a:hover{opacity:.75}
-
 .nav-cta{display:flex;gap:10px;align-items:center}
 
-/* Call button refined */
 .btn{
   display:inline-flex;align-items:center;gap:.6rem;background:var(--brand);color:#fff;
-  padding:.72rem 1rem;border-radius:999px;font-weight:700;box-shadow:var(--shadow);border:0;cursor:pointer;
-  transition:transform .08s ease,opacity .2s
+  padding:.72rem 1rem;border-radius:999px;font-weight:700;border:0;cursor:pointer;
+  box-shadow:var(--shadow);transition:transform .08s ease,opacity .2s
 }
 .btn:hover{transform:translateY(-1px)}
 .btn.alt{background:#fff;color:#111;border:2px solid var(--brand-2);box-shadow:none}
-.btn.alt:hover{opacity:.9}
 
-/* Mobile controls */
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:0}
 .hamburger span{width:22px;height:2px;background:#1f2f31}
-
-/* Always hide mobile dropdown unless opened */
 .mobile-menu{display:none}
 .mobile-menu.open{display:block}
 
-@media (max-width:900px){
-  .nav{height:64px}
-  .brand-logo{width:70px}
-  .navlinks{display:none}
-  .hamburger{display:flex}
-  .mobile-menu{
-    position:absolute;inset:64px 0 auto 0;background:#fff;border-bottom:1px solid rgba(0,0,0,.06)
-  }
-  .mobile-menu a{
-    display:block;padding:14px 20px;border-top:1px solid rgba(0,0,0,.04);color:#23373a;font-weight:600
-  }
-}
-@media (max-width:600px){
-  .brand-logo{width:50px}
-  /* Optional: save space on tiny screens */
-  /* .brand-name{display:none} */
-}
-
-/* ---------- Hero ---------- */
+/* Hero */
 .hero{
-  position:relative;
+  position:relative;overflow:hidden;
   background:
     radial-gradient(70% 70% at 10% 10%, rgba(0,163,173,.10) 0%, rgba(0,0,0,0) 60%),
-    linear-gradient(180deg, #ffffff 0%, #f2fbfc 100%);
-  overflow:hidden;
+    linear-gradient(180deg,#ffffff 0%,#f2fbfc 100%);
 }
 .hero-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:72px 0}
 .hero h1{font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.08;margin:.4rem 0}
 .hero p{color:var(--muted);font-size:1.05rem}
 .hero .badges{display:flex;flex-wrap:wrap;gap:10px;margin:1rem 0 1.2rem}
-.hero-card{
-  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;
-  border:1px solid rgba(0,0,0,.06)
-}
+.hero-ctas{display:flex;gap:14px;align-items:center;margin:14px 0 10px}
+.hero-phone{font-weight:700;color:#0b1b1d;white-space:nowrap}
+.trust{display:flex;gap:18px;padding:0;margin:12px 0 0;list-style:none;color:var(--muted);font-size:.95rem}
+
+.hero-aside{display:grid;gap:16px}
+.hero-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;border:1px solid rgba(0,0,0,.06)}
+.card-title{margin:0 0 .4rem}
+
 .lead-form{display:grid;gap:10px}
 .lead-form .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.lead-form input, .lead-form select, .lead-form textarea{
+.lead-form input,.lead-form select,.lead-form textarea{
   width:100%;padding:.85rem .9rem;border:1px solid #dbe7ea;border-radius:12px;background:#fff;font:inherit
 }
-.lead-form small{color:#5a6b6e}
-.hero-illus{
-  aspect-ratio: 4/3;
-  border-radius: var(--radius);
-  background:
-    linear-gradient(140deg, rgba(255,209,0,.25), rgba(255,209,0,0)) ,
-    url('./assets/stock.jpeg') center/cover no-repeat;
-  border:1px solid rgba(0,0,0,.06);
-  box-shadow:var(--shadow);
-}
-@media (max-width:900px){
-  .hero-wrap{grid-template-columns:1fr;gap:24px;padding:40px 0}
-}
+.lead-form small{color:var(--muted)}
 
-/* ---------- Sections & cards ---------- */
-.section{padding:60px 0}
+/* Sections & cards */
+.section{padding:80px 0}
 .section h2{font-size:clamp(1.4rem,2.6vw,2.2rem);margin:.2rem 0 1rem}
 .grid{display:grid;gap:18px}
 .grid.cols-3{grid-template-columns:repeat(3,1fr)}
 .grid.cols-4{grid-template-columns:repeat(4,1fr)}
 @media (max-width:1000px){.grid.cols-4{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:720px){.grid.cols-3{grid-template-columns:1fr}.grid.cols-4{grid-template-columns:1fr}}
+@media (max-width:720px){.grid.cols-3,.grid.cols-4{grid-template-columns:1fr}}
+
 .card{
-  background:var(--card);border-radius:var(--radius);padding:16px;border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px
+  background:var(--card);border-radius:var(--radius);padding:16px;border:1px solid rgba(0,0,0,.06);
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px
 }
-.card .thumb{height:160px;border-radius:12px;background:#eef6f7;overflow:hidden;border:1px solid rgba(0,0,0,.05)}
+.card .thumb{height:180px;border-radius:12px;background:#eef6f7 center/cover no-repeat;border:1px solid rgba(0,0,0,.05)}
 .card h3{margin:.2rem 0}
 .card p{color:var(--muted);font-size:.98rem}
 .card .actions{margin-top:auto}
 
-/* ---------- Steps ---------- */
-.steps{counter-reset:step}
-.step{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start;padding:16px;background:#ffffff;border:1px solid rgba(0,0,0,.06);border-radius:16px}
+/* Steps */
+.step{
+  display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start;
+  padding:16px;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px
+}
 .step .dot{
   width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,var(--brand),#2fd3dc);
   color:#fff;display:grid;place-items:center;font-weight:900;font-size:1.1rem;box-shadow:var(--shadow)
 }
 
-/* ---------- Icons ---------- */
+/* Why-us icons */
 .icon{
   width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#ffe45a,#ffd100);
   display:grid;place-items:center;font-weight:900;color:#26332f;border:1px solid rgba(0,0,0,.05)
 }
 
-/* ---------- Footer ---------- */
+/* Footer */
 footer{background:#0f2224;color:#cfe7ea;margin-top:40px}
 footer a{color:#e9fcff}
 .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;padding:40px 20px}
@@ -147,437 +112,57 @@ footer a{color:#e9fcff}
 .bar{border-top:1px solid rgba(255,255,255,.12);padding:10px 20px;color:#a9c2c5}
 @media (max-width:900px){.foot{grid-template-columns:1fr}}
 
-/* ===== T&A Services — Mobile/Zoom Fixes (append) ===== */
-
-/* Safety: prevent side-scroll on zoom & make media fluid */
-html, body { width: 100%; overflow-x: hidden; }
-img, video { max-width: 100%; height: auto; }
-
-/* Header: allow wrapping and keep layout tidy on mobile */
-@media (max-width: 900px) {
-  /* Let the main nav bar wrap to 2 rows if needed */
-  .nav {
-    flex-wrap: wrap;
-    gap: 10px;
-    padding-top: calc(8px + env(safe-area-inset-top));
-  }
-
-  /* Keep brand flexible so it doesn’t push other items off */
-  .brand { flex: 1 1 auto; min-width: 0; }
-
-  /* Put the Call button on its own row, full width */
-  .nav-cta {
-    order: 3;               /* moves below logo/hamburger */
-    width: 100%;
-    display: flex;
-  }
-  .nav-cta .btn {
-    flex: 1 0 100%;
-    justify-content: center;
-    text-align: center;
-  }
-}
-
-/* Form: stack inputs on phones so they align cleanly */
-@media (max-width: 720px) {
-  .lead-form .row {
-    grid-template-columns: 1fr;  /* from 2 cols -> 1 col */
-  }
-}
-
-/* Optional: if anything still overflows, clamp big grids */
-@media (max-width: 720px) {
-  .grid { gap: 16px; }
-  .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; }
-}
-/* --- Mobile call button adjustment --- */
-@media (max-width: 900px) {
-  .nav-cta {
-    order: 3;
-    width: 100%;
-    display: flex;
-    justify-content: center;   /* center it */
-    margin-top: 6px;
-  }
-
-  .nav-cta .btn.alt {
-    flex: 0 0 auto;            /* don't stretch full width */
-    display: inline-flex;
-    padding: 10px 18px;
-    font-size: 15px;
-    border-radius: 999px;      /* pill shape */
-    max-width: 90%;            /* avoids edge-to-edge */
-  }
-}
-/* --- Quick Contact mobile fixes --- */
-@media (max-width: 900px) {
-  .quick-contact {
-    position: static;       /* no floating on mobile */
-    width: 100%;            /* span full width */
-    max-width: none;
-    margin: 20px auto;
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: var(--shadow);
-    background: #fff;
-  }
-
-  .quick-contact h3,
-  .quick-contact .title {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    text-align: center;
-    white-space: normal;
-  }
-
-  .quick-contact input,
-  .quick-contact textarea,
-  .quick-contact select,
-  .quick-contact button {
-    width: 100% !important;
-    margin-bottom: 10px;
-    display: block;
-  }
-
-  .quick-contact button {
-    background: var(--brand);
-    color: #fff;
-    border: none;
-    padding: 12px;
-    border-radius: var(--radius);
-    font-weight: 600;
-  }
-}
-/* --- Quick Contact: mobile layout --- */
-@media (max-width: 900px) {
-  .quick-contact {
-    position: static !important;    /* no fixed/absolute float */
-    float: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 30px auto;              /* spacing above/below */
-    padding: 20px;
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    background: #fff;
-  }
-
-  /* Title clean */
-  .quick-contact h3,
-  .quick-contact .title {
-    font-size: 1.2rem;
-    margin-bottom: 14px;
-    text-align: center;
-    white-space: normal;
-  }
-
-  /* Fields stack full-width */
-  .quick-contact input,
-  .quick-contact textarea,
-  .quick-contact select,
-  .quick-contact button {
-    width: 100%;
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .quick-contact button {
-    background: var(--brand);
-    color: #fff;
-    border: none;
-    padding: 14px;
-    border-radius: var(--radius);
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-}
-/* ===== Contact section: make it 1 column on mobile & place Quick Contact after ===== */
-@media (max-width: 900px) {
-  /* 1) Stack the contact grid to a single column (overrides inline style) */
-  #contact .container {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-    align-items: start !important;
-  }
-
-  /* 2) Ensure the text block shows first, card (quick-contact) shows second */
-  #contact .container > div:first-child { order: 1; }
-  #contact .container .quick-contact     { order: 2; }
-
-  /* 3) Make the quick-contact card breathe on mobile */
-  .quick-contact {
-    width: 100%;
-    max-width: 100%;
-    margin: 8px 0 0;
-  }
-
-  .quick-contact .lead-form .row {
-    grid-template-columns: 1fr !important; /* inputs stack */
-  }
-
-  .quick-contact input,
-  .quick-contact select,
-  .quick-contact textarea,
-  .quick-contact button {
-    width: 100%;
-  }
-}
-
-
-/* --- Simple gallery --- */
-.ta-gallery{position:relative;background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:10px}
-.ta-gallery .g-viewport{position:relative;overflow:hidden;border-radius:10px}
-.ta-gallery .g-slide{margin:0;display:none;transition:opacity .35s ease}
+/* Gallery (single, consolidated version) */
+.ta-gallery{position:relative;background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:10px}
+.ta-gallery .g-viewport{position:relative;overflow:hidden;border-radius:10px;display:grid;background:#f3f4f6}
+.ta-gallery[data-aspect="3:4"] .g-viewport{aspect-ratio:3/4}
+.ta-gallery[data-aspect="9:16"] .g-viewport{aspect-ratio:9/16}
+.ta-gallery .g-slide{margin:0;display:none}
 .ta-gallery .g-slide.is-active{display:block}
-.ta-gallery img{width:100%;height:auto;display:block}
-.ta-gallery figcaption{font-size:.9rem;color:var(--muted,#5a6b6e);padding:8px 6px}
-
+.ta-gallery img{width:100%;height:100%;object-fit:contain;object-position:center;image-orientation:from-image}
+.ta-gallery figcaption{font-size:.9rem;color:var(--muted);padding:8px 6px;text-align:center}
 .ta-gallery .g-btn{
-  position:absolute;top:50%;transform:translateY(-50%);
-  background:#fff;border:1px solid #e5e7eb;border-radius:999px;
-  width:38px;height:38px;display:grid;place-items:center;cursor:pointer;
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid #e5e7eb;border-radius:999px;
+  width:28px;height:28px;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.08);font-size:18px;line-height:1
 }
-.ta-gallery .g-prev{left:8px}
-.ta-gallery .g-next{right:8px}
-
-.ta-gallery .g-dots{display:flex;gap:6px;justify-content:center;margin:10px 0 2px}
-.ta-gallery .g-dots button{
-  width:8px;height:8px;border-radius:999px;border:0;background:#d1d5db;cursor:pointer
-}
+.ta-gallery .g-prev{left:6px}
+.ta-gallery .g-next{right:6px}
+.ta-gallery .g-dots{display:flex;gap:4px;justify-content:center;margin:10px 0 2px}
+.ta-gallery .g-dots button{width:6px;height:6px;border-radius:999px;border:0;background:#d1d5db;cursor:pointer}
 .ta-gallery .g-dots button[aria-selected="true"]{background:#00a3ad}
-@media (max-width:700px){
-  .ta-gallery .g-btn{display:none} /* tap/swipe on mobile */
-}
+@media (max-width:700px){.ta-gallery .g-btn{display:none}}
 
-/* iPhone-friendly portrait gallery box (no crop) */
-.ta-gallery {
-  position: relative;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-  padding: 10px;
-}
+.ta-gallery--sm{width:100%;max-width:420px;margin:0 auto;padding:8px}
+.ta-gallery--sm .g-viewport{aspect-ratio:3/4;border-radius:10px}
 
-/* The viewport keeps a portrait aspect ratio */
-.ta-gallery .g-viewport {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  background: #f3f4f6; /* subtle gray behind letterbox */
-  display: grid;
-}
+/* Quick Contact (mobile tidy) */
+@media (max-width:900px){
+  /* header */
+  .nav{height:64px;flex-wrap:wrap;gap:10px;padding-top:calc(8px + env(safe-area-inset-top))}
+  .brand-logo{width:70px}
+  .navlinks{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{position:absolute;inset:64px 0 auto 0;background:#fff;border-bottom:1px solid rgba(0,0,0,.06)}
+  .mobile-menu a{display:block;padding:14px 20px;border-top:1px solid rgba(0,0,0,.04);color:#23373a;font-weight:600}
 
-/* Default 3:4 portrait frame */
-.ta-gallery[data-aspect="3:4"] .g-viewport { aspect-ratio: 3 / 4; }
+  /* hero */
+  .hero-wrap{grid-template-columns:1fr;gap:24px;padding:40px 0}
+  .ta-gallery--sm{max-width:100%}
 
-/* Optional 9:16 portrait frame (for very tall phone shots) */
-.ta-gallery[data-aspect="9:16"] .g-viewport { aspect-ratio: 9 / 16; }
+  /* contact layout */
+  #contact .container{display:grid !important;grid-template-columns:1fr !important;gap:16px !important;align-items:start !important}
+  #contact .container > div:first-child{order:1}
+  #contact .container .quick-contact{order:2}
 
-/* Slides */
-.ta-gallery .g-slide { 
-  margin: 0; 
-  display: none; 
-}
-.ta-gallery .g-slide.is-active { display: block; }
-
-/* Images fill the portrait box without cropping */
-.ta-gallery img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;              /* no crop */
-  object-position: center;          /* centered */
-  display: block;
-  image-orientation: from-image;    /* respect iPhone EXIF rotation */
-}
-
-/* Caption */
-.ta-gallery figcaption {
-  font-size: .9rem;
-  color: var(--muted, #5a6b6e);
-  padding: 8px 6px;
-  text-align: center;
-}
-
-/* Prev/next buttons */
-.ta-gallery .g-btn{
-  position:absolute; top:50%; transform:translateY(-50%);
-  background:#fff; border:1px solid #e5e7eb; border-radius:999px;
-  width:38px; height:38px; display:grid; place-items:center; cursor:pointer;
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
-}
-.ta-gallery .g-prev{ left:8px }
-.ta-gallery .g-next{ right:8px }
-
-/* Dots */
-.ta-gallery .g-dots{ display:flex; gap:6px; justify-content:center; margin:10px 0 2px }
-.ta-gallery .g-dots button{
-  width:8px; height:8px; border-radius:999px; border:0; background:#d1d5db; cursor:pointer
-}
-.ta-gallery .g-dots button[aria-selected="true"]{ background:#00a3ad }
-
-/* Mobile: hide arrows (tap/swipe/drag to navigate) */
-@media (max-width:700px){
-  .ta-gallery .g-btn{ display:none }
-}
-
-/* --- Optional fallback for very old browsers that lack aspect-ratio ---
-   Only needed if you see layout issues on older Safari/Android:
-.ta-gallery .g-viewport::before{
-  content:""; display:block; padding-top: calc(100% * 4 / 3);  /* 3:4 = 133.333% */
-}
-.ta-gallery[data-aspect="9:16"] .g-viewport::before{
-  padding-top: calc(100% * 16 / 9);
-}
-.ta-gallery .g-viewport > *{ position:absolute; inset:0 }
-*/
-
-/* Smaller gallery variant */
-.ta-gallery--sm {
-  max-width: 420px;       /* fixed size for desktop */
-  margin: 0 auto;         /* center horizontally */
-  padding: 8px;
-}
-
-/* On wide screens, don’t let it blow up */
-@media (min-width: 901px) {
-  .ta-gallery--sm {
-    width: 100%;
-    max-width: 420px;     /* clamp gallery width on desktop */
+  /* quick-contact card */
+  .quick-contact{
+    width:100%;max-width:100%;margin:20px auto;border:1px solid rgba(0,0,0,.08);
+    border-radius:16px;padding:16px;background:#fff;box-shadow:var(--shadow)
   }
+  .quick-contact h3{font-size:1.1rem;margin-bottom:10px;text-align:center;white-space:normal}
+  .quick-contact .lead-form .row{grid-template-columns:1fr}
+  .quick-contact input,.quick-contact select,.quick-contact textarea,.quick-contact button{width:100%;margin-bottom:10px;display:block}
 }
 
-/* Let it go full-width on mobile for better fit */
-@media (max-width: 900px) {
-  .ta-gallery--sm {
-    max-width: 100%;
-  }
-}
-
-
-/* Keep portrait frame; height scales with width automatically */
-.ta-gallery--sm .g-viewport {
-  aspect-ratio: 3 / 4;   /* or 9 / 16 if you prefer taller */
-  border-radius: 10px;
-}
-
-/* Compact UI */
-.ta-gallery--sm .g-btn {
-  width: 28px;
-  height: 28px;
-  font-size: 18px;
-  line-height: 1;
-}
-.ta-gallery--sm .g-prev { left: 6px; }
-.ta-gallery--sm .g-next { right: 6px; }
-
-.ta-gallery--sm figcaption {
-  font-size: .85rem;
-  padding: 6px 4px;
-}
-
-/* Smaller dots */
-.ta-gallery--sm .g-dots { gap: 4px; }
-.ta-gallery--sm .g-dots button { width: 6px; height: 6px; }
-
-/* Mobile: let it breathe full width */
-@media (max-width: 700px) {
-  .ta-gallery--sm { max-width: 100%; }
-}
-/* Center the hero gallery */
-.hero-gallery-wrap {
-  display: flex;
-  justify-content: center;
-}
-
-/* Smaller gallery variant (desktop clamp) */
-.ta-gallery--sm {
-  max-width: 420px;   /* adjust 360–480px if you want it smaller/bigger */
-  margin: 0 auto;
-  padding: 8px;
-}
-
-/* Portrait frame; height follows width automatically */
-.ta-gallery--sm .g-viewport { aspect-ratio: 3 / 4; border-radius: 10px; }
-
-/* Compact UI */
-.ta-gallery--sm .g-btn { width: 28px; height: 28px; font-size: 18px; line-height: 1; }
-.ta-gallery--sm .g-prev { left: 6px; }
-.ta-gallery--sm .g-next { right: 6px; }
-.ta-gallery--sm figcaption { font-size: .85rem; padding: 6px 4px; }
-.ta-gallery--sm .g-dots { gap: 4px; }
-.ta-gallery--sm .g-dots button { width: 6px; height: 6px; }
-
-/* Desktop clamp */
-@media (min-width: 901px) {
-  .ta-gallery--sm { width: 100%; max-width: 420px; }
-}
-
-/* Mobile: let it be full-width */
-@media (max-width: 900px) {
-  .ta-gallery--sm { max-width: 100%; }
-}
-/* --- HERO layout polish --- */
-.hero-wrap{
-  display:grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 40px;
-  align-items: start;
-  padding: 72px 0;
-}
-.hero-copy p{ font-size: 1.05rem; line-height: 1.6; }
-.hero-ctas{ display:flex; gap:14px; align-items:center; margin: 14px 0 10px; }
-.hero-phone{ font-weight:700; color:#0b1b1d; white-space:nowrap }
-.hero-card{ background:#fff; border-radius: var(--radius); box-shadow: var(--shadow); padding:18px; border:1px solid rgba(0,0,0,.06) }
-.card-title{ margin:0 0 .4rem }
-.trust{ display:flex; gap:18px; padding:0; margin:12px 0 0; list-style:none; color:var(--muted); font-size:.95rem }
-.trust li::marker{ content:"" }
-
-/* Right rail stacks form + gallery */
-.hero-aside{ display:grid; gap:16px }
-
-/* --- Smaller, centered gallery variant --- */
-.hero-aside .ta-gallery--sm{ margin: 0 auto; }
-.ta-gallery--sm {
-  max-width: 420px;                /* adjust 360–480px to taste */
-  width: 100%;
-  padding: 8px;
-  border-radius: 14px;
-}
-.ta-gallery--sm .gallery-title{
-  font-size: 1rem; text-align:center; margin: 2px 0 10px; color:#22393c;
-}
-.ta-gallery--sm .g-viewport{ aspect-ratio: 3 / 4; border-radius: 10px; }
-.ta-gallery--sm .g-btn{ width:28px; height:28px; font-size:18px; line-height:1 }
-.ta-gallery--sm .g-prev{ left:6px } .ta-gallery--sm .g-next{ right:6px }
-.ta-gallery--sm figcaption{ font-size:.85rem; padding:6px 4px; }
-.ta-gallery--sm .g-dots{ gap:4px } .ta-gallery--sm .g-dots button{ width:6px; height:6px }
-
-/* --- Section rhythm & readability --- */
-.section{ padding: 80px 0; }               /* more breathing room */
-.section h2{ margin-bottom: 16px; }
-.muted{ color: var(--muted); }
-
-/* --- Service cards: ensure consistent thumbs --- */
-.card .thumb{
-  height: 180px;                     /* slightly larger */
-  border-radius:12px;
-  overflow:hidden;
-  background:#eef6f7 center/cover no-repeat;
-  border:1px solid rgba(0,0,0,.05);
-}
-
-/* --- Why Us icons: make tiles a tad taller --- */
-.icon{ width:44px; height:44px }
-
-/* --- Desktop & mobile responsiveness --- */
-@media (max-width: 1000px){
-  .hero-wrap{ grid-template-columns: 1fr; gap: 24px; padding: 40px 0; }
-  .hero-aside .ta-gallery--sm{ max-width: 100%; }
-  .trust{ flex-wrap:wrap }
-}
-
+/* Small screens */
+@media (max-width:600px){.brand-logo{width:50px}}
