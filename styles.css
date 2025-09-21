@@ -166,3 +166,44 @@ footer a{color:#e9fcff}
 
 /* Small screens */
 @media (max-width:600px){.brand-logo{width:50px}}
+
+
+/* === Unified CTA style (make all primary buttons teal) === */
+.btn { background: var(--brand); color: #fff; border: 0; }
+.btn.alt { background: var(--brand); color: #fff; border: 0; }
+
+/* Header call button spacing (mobile + desktop) */
+.nav-cta { gap: 14px; }
+@media (max-width: 900px){
+  .nav-cta { margin-top: 6px; }
+}
+
+/* Hero: give the text more breathing room; narrow the form card a bit */
+@media (min-width: 901px){
+  .hero-wrap { padding: 88px 0; }              /* was 72px */
+  .hero-aside { align-content: start; }
+  .hero-aside .hero-card { max-width: 380px; } /* narrower form for balance */
+}
+
+/* Gallery title centered and consistent sizing */
+.gallery-title { text-align: center; margin: 2px 0 10px; font-size: 1rem; color:#22393c; }
+
+/* Slight shadow to separate gallery images from white bg */
+.ta-gallery .g-viewport { background: #fff; }
+.ta-gallery .g-slide.is-active img { filter: drop-shadow(0 6px 20px rgba(0,0,0,.06)); }
+
+/* More vertical breathing room between sections */
+.section { padding: 100px 0; }                 /* was ~80/60px in places */
+
+/* Darker placeholders for sunlit mobile readability */
+.lead-form input::placeholder,
+.lead-form select::placeholder,
+.lead-form textarea::placeholder { color: #687a7d; }
+
+/* Footer logo a bit bigger & brighter without touching header logo */
+.foot .brand-logo { width: 120px; filter: brightness(1.07) contrast(1.04); }
+
+/* Keep mobile form nice and roomy */
+@media (max-width: 720px){
+  .lead-form .row { grid-template-columns: 1fr; }
+}
