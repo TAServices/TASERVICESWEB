@@ -117,19 +117,71 @@ document.addEventListener("DOMContentLoaded", function () {
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-wrap">
-      <div>
-        <span class="chip">24/7 Emergency Response</span>
-        <h1>Water Damage Restoration Services</h1>
-        <p>Water, mold, and storm damage—restored safely and fast. Certified technicians. Insurance-friendly. Local to Virginia Beach.</p>
-        <div class="badges">
-          <span class="chip">Certified Techs</span>
-          <span class="chip">Insurance Assistance</span>
-          <span class="chip">Fast Arrival</span>
+  <!-- LEFT: message -->
+  <div class="hero-copy">
+    <span class="chip">24/7 Emergency Response</span>
+    <h1>Water Damage Restoration in Virginia Beach, VA</h1>
+    <p class="muted">Water, mold, and storm damage—restored safely and fast. Certified technicians. Insurance-friendly. Local to Virginia Beach.</p>
+    <div class="badges">
+      <span class="chip">Certified Techs</span>
+      <span class="chip">Insurance Assistance</span>
+      <span class="chip">Fast Arrival</span>
+    </div>
+
+    <div class="hero-ctas">
+      <a class="btn" href="#contact">Request Service</a>
+      <a class="hero-phone" href="tel:+17575678687">📞 (757) 567-8687 — 24/7</a>
+    </div>
+
+    <!-- Trust strip -->
+    <ul class="trust">
+      <li>✔ Licensed & Insured</li>
+      <li>✔ IICRC Standards</li>
+      <li>✔ Local, Family-Owned</li>
+    </ul>
+  </div>
+
+  <!-- RIGHT: form + gallery rail -->
+  <aside class="hero-aside">
+    <div class="hero-card">
+      <h3 class="card-title">Get Help Now</h3>
+      <!-- keep your existing form exactly as-is -->
+      <form class="lead-form" id="leadForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
+        <input type="hidden" name="_subject" value="TAWaterServices — New Request">
+        <input type="text" name="_honeypot" style="display:none">
+        <div class="row">
+          <input required name="name" aria-label="Full name" placeholder="Full name*" />
+          <input required name="phone" aria-label="Phone" placeholder="Phone*" />
         </div>
-        <a class="btn" href="#contact">Request Service</a>
-      </div>
-      <div class="hero-card">
-        <h3 style="margin:0 0 .4rem">Get Help Now</h3>
+        <div class="row">
+          <input name="email" aria-label="Email" placeholder="Email" type="email" />
+          <select name="service" aria-label="Service needed">
+            <option value="">Service needed</option>
+            <option>Water Damage</option>
+            <option>Mold Remediation</option>
+            <option>Storm / Weather</option>
+            <option>Bio / Odor</option>
+          </select>
+        </div>
+        <input name="address" aria-label="Address" placeholder="Address / City" />
+        <textarea name="details" rows="3" placeholder="Briefly describe the damage"></textarea>
+        <small>By submitting, you agree to be contacted about your request.</small>
+        <button class="btn alt" type="submit">Submit Request</button>
+        <div class="note" id="leadNote" role="status" aria-live="polite" style="display:none"></div>
+      </form>
+    </div>
+
+    <!-- Small, centered gallery -->
+    <div class="ta-gallery ta-gallery--sm" data-autoplay="false" data-aspect="3:4">
+      <h2 class="gallery-title">Recent Work</h2>
+      <button class="g-btn g-prev" aria-label="Previous slide">‹</button>
+      <div class="g-viewport" id="galleryViewport"></div>
+      <button class="g-btn g-next" aria-label="Next slide">›</button>
+      <div class="g-dots" aria-label="Slide navigation" role="tablist"></div>
+    </div>
+  </aside>
+</div>
+
         <!-- Formspree-connected form (AJAX) -->
         <form class="lead-form" id="leadForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
           <input type="hidden" name="_subject" value="TAWaterServices — New Request">
