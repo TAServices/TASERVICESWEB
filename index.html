@@ -5,33 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>T&A Services — Water Damage Restoration in Virginia Beach and surrounding areas</title>
   <meta name="description" content="T&A Services provides 24/7 water, mold, and weather damage restoration for homes. Fast response. Certified technicians." />
-  <link rel="icon" href="./assets/logo.png" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="styles.css?v=5">
-  <link rel="stylesheet" href="ta-mobile-fixes.css?v=2">
 
+  <!-- Favicon set -->
+  <link rel="icon" href="./assets/logo.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180x180.png">
   <link rel="shortcut icon" href="/assets/favicon.ico">
 
-  <!-- NEW: canonical -->
-  <link rel="canonical" href="https://tawaterservices.com/">
+  <!-- Styles (single include) -->
+  <link rel="stylesheet" href="styles.css">
 
-  <!-- Open Graph / Social Default -->
+  <!-- Canonical + social -->
+  <link rel="canonical" href="https://tawaterservices.com/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tawaterservices.com/">
   <meta property="og:title" content="T&A Services — Water Damage Mitigation in Hampton Roads, VA">
   <meta property="og:description" content="24/7 water damage restoration, storm cleanup, and handyman services across Hampton Roads, VA. Free estimates.">
   <meta property="og:image" content="https://tawaterservices.com/assets/og-default.png">
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="T&A Services — Water Damage Mitigation in Hampton Roads, VA">
   <meta name="twitter:description" content="Fast, reliable restoration and handyman services in Hampton Roads, VA. Call for a free estimate.">
   <meta name="twitter:image" content="https://tawaterservices.com/assets/og-default.png">
 
-  <!-- NEW: JSON-LD LocalBusiness -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,41 +51,31 @@
     "priceRange": "$$"
   }
   </script>
-
-  <!-- NEW: JSON-LD WebSite -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://tawaterservices.com/",
-    "name": "T&A Services"
-  }
+  { "@context": "https://schema.org", "@type": "WebSite", "url": "https://tawaterservices.com/", "name": "T&A Services" }
+  </script>
+
+  <script>
+    // Move Quick Contact after the contact text on mobile
+    document.addEventListener("DOMContentLoaded", function () {
+      const qc = document.querySelector(".quick-contact");
+      const requestSection = document.querySelector("#contact");
+      function moveQuickContact() {
+        if (window.innerWidth <= 900 && qc && requestSection &&
+            !requestSection.nextElementSibling?.classList?.contains("quick-contact")) {
+          requestSection.insertAdjacentElement("afterend", qc);
+        }
+      }
+      moveQuickContact();
+      window.addEventListener("resize", moveQuickContact);
+    });
   </script>
 </head>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const qc = document.querySelector(".quick-contact");
-  const requestSection = document.querySelector("#contact");
-
-  function moveQuickContact() {
-    if (window.innerWidth <= 900) {
-      if (qc && requestSection && !requestSection.nextElementSibling?.classList.contains("quick-contact")) {
-        requestSection.insertAdjacentElement("afterend", qc);
-      }
-    }
-  }
-
-  moveQuickContact();
-  window.addEventListener("resize", moveQuickContact);
-});
-</script>
 
 <body>
   <!-- Header -->
   <header>
     <div class="container nav">
-      <!-- CHANGED: href to / for home -->
       <a class="brand" href="/">
         <img class="brand-logo" src="./assets/logo.png" alt="T&A Services logo" />
         <div class="brand-name">T&A Services</div>
@@ -117,111 +104,64 @@ document.addEventListener("DOMContentLoaded", function () {
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-wrap">
-  <!-- LEFT: message -->
-  <div class="hero-copy">
-    <span class="chip">24/7 Emergency Response</span>
-    <h1>Water Damage Restoration in Virginia Beach, VA</h1>
-    <p class="muted">Water, mold, and storm damage—restored safely and fast. Certified technicians. Insurance-friendly. Local to Virginia Beach.</p>
-    <div class="badges">
-      <span class="chip">Certified Techs</span>
-      <span class="chip">Insurance Assistance</span>
-      <span class="chip">Fast Arrival</span>
-    </div>
-
-    <div class="hero-ctas">
-      <a class="btn" href="#contact">Request Service</a>
-      <a class="hero-phone" href="tel:+17575678687">📞 (757) 567-8687 — 24/7</a>
-    </div>
-
-    <!-- Trust strip -->
-    <ul class="trust">
-      <li>✔ Licensed & Insured</li>
-      <li>✔ IICRC Standards</li>
-      <li>✔ Local, Family-Owned</li>
-    </ul>
-  </div>
-
-  <!-- RIGHT: form + gallery rail -->
-  <aside class="hero-aside">
-    <div class="hero-card">
-      <h3 class="card-title">Get Help Now</h3>
-      <!-- keep your existing form exactly as-is -->
-      <form class="lead-form" id="leadForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
-        <input type="hidden" name="_subject" value="TAWaterServices — New Request">
-        <input type="text" name="_honeypot" style="display:none">
-        <div class="row">
-          <input required name="name" aria-label="Full name" placeholder="Full name*" />
-          <input required name="phone" aria-label="Phone" placeholder="Phone*" />
+      <!-- LEFT: message -->
+      <div class="hero-copy">
+        <span class="chip">24/7 Emergency Response</span>
+        <h1>Water Damage Restoration in Virginia Beach, VA</h1>
+        <p class="muted">Water, mold, and storm damage—restored safely and fast. Certified technicians. Insurance-friendly. Local to Virginia Beach.</p>
+        <div class="badges">
+          <span class="chip">Certified Techs</span>
+          <span class="chip">Insurance Assistance</span>
+          <span class="chip">Fast Arrival</span>
         </div>
-        <div class="row">
-          <input name="email" aria-label="Email" placeholder="Email" type="email" />
-          <select name="service" aria-label="Service needed">
-            <option value="">Service needed</option>
-            <option>Water Damage</option>
-            <option>Mold Remediation</option>
-            <option>Storm / Weather</option>
-            <option>Bio / Odor</option>
-          </select>
+        <div class="hero-ctas">
+          <a class="btn" href="#contact">Request Service</a>
+          <a class="hero-phone" href="tel:+17575678687">📞 (757) 567-8687 — 24/7</a>
         </div>
-        <input name="address" aria-label="Address" placeholder="Address / City" />
-        <textarea name="details" rows="3" placeholder="Briefly describe the damage"></textarea>
-        <small>By submitting, you agree to be contacted about your request.</small>
-        <button class="btn alt" type="submit">Submit Request</button>
-        <div class="note" id="leadNote" role="status" aria-live="polite" style="display:none"></div>
-      </form>
-    </div>
-
-    <!-- Small, centered gallery -->
-    <div class="ta-gallery ta-gallery--sm" data-autoplay="false" data-aspect="3:4">
-      <h2 class="gallery-title">Recent Work</h2>
-      <button class="g-btn g-prev" aria-label="Previous slide">‹</button>
-      <div class="g-viewport" id="galleryViewport"></div>
-      <button class="g-btn g-next" aria-label="Next slide">›</button>
-      <div class="g-dots" aria-label="Slide navigation" role="tablist"></div>
-    </div>
-  </aside>
-</div>
-
-        <!-- Formspree-connected form (AJAX) -->
-        <form class="lead-form" id="leadForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
-          <input type="hidden" name="_subject" value="TAWaterServices — New Request">
-          <input type="text" name="_honeypot" style="display:none">
-          <div class="row">
-            <input required name="name" aria-label="Full name" placeholder="Full name*" />
-            <input required name="phone" aria-label="Phone" placeholder="Phone*" />
-          </div>
-          <div class="row">
-            <input name="email" aria-label="Email" placeholder="Email" type="email" />
-            <select name="service" aria-label="Service needed">
-              <option value="">Service needed</option>
-              <option>Water Damage</option>
-              <option>Mold Remediation</option>
-              <option>Storm / Weather</option>
-              <option>Bio / Odor</option>
-            </select>
-          </div>
-          <input name="address" aria-label="Address" placeholder="Address / City" />
-          <textarea name="details" rows="3" placeholder="Briefly describe the damage"></textarea>
-          <small>By submitting, you agree to be contacted about your request.</small>
-          <button class="btn alt" type="submit">Submit Request</button>
-          <div class="note" id="leadNote" role="status" aria-live="polite" style="display:none"></div>
-        </form>
+        <ul class="trust">
+          <li>✔ Licensed & Insured</li>
+          <li>✔ IICRC Standards</li>
+          <li>✔ Local, Family-Owned</li>
+        </ul>
       </div>
-    </div>
-    <div class="container" style="padding-bottom:30px">
-  <div class="hero-gallery-wrap">
-    <div class="ta-gallery ta-gallery--sm" data-autoplay="false" data-aspect="3:4">
-      <h2 style="text-align:center; margin:0 0 10px;">Recent Work</h2>
 
-      <button class="g-btn g-prev" aria-label="Previous slide">‹</button>
-      <div class="g-viewport" id="galleryViewport"><!-- JS inserts slides --></div>
-      <button class="g-btn g-next" aria-label="Next slide">›</button>
+      <!-- RIGHT: form + (small) gallery -->
+      <aside class="hero-aside">
+        <div class="hero-card">
+          <h3 class="card-title">Get Help Now</h3>
+          <form class="lead-form" id="leadForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
+            <input type="hidden" name="_subject" value="TAWaterServices — New Request">
+            <input type="text" name="_honeypot" style="display:none">
+            <div class="row">
+              <input required name="name" aria-label="Full name" placeholder="Full name*" />
+              <input required name="phone" aria-label="Phone" placeholder="Phone*" />
+            </div>
+            <div class="row">
+              <input name="email" aria-label="Email" placeholder="Email" type="email" />
+              <select name="service" aria-label="Service needed">
+                <option value="">Service needed</option>
+                <option>Water Damage</option>
+                <option>Mold Remediation</option>
+                <option>Storm / Weather</option>
+                <option>Bio / Odor</option>
+              </select>
+            </div>
+            <input name="address" aria-label="Address" placeholder="Address / City" />
+            <textarea name="details" rows="3" placeholder="Briefly describe the damage"></textarea>
+            <small>By submitting, you agree to be contacted about your request.</small>
+            <button class="btn alt" type="submit">Submit Request</button>
+            <div class="note" id="leadNote" role="status" aria-live="polite" style="display:none"></div>
+          </form>
+        </div>
 
-      <div class="g-dots" aria-label="Slide navigation" role="tablist"></div>
-    </div>
-  </div>
-</div>
-
+        <div class="ta-gallery ta-gallery--sm" data-autoplay="false" data-aspect="3:4">
+          <h2 class="gallery-title">Recent Work</h2>
+          <button class="g-btn g-prev" aria-label="Previous slide">‹</button>
+          <div class="g-viewport" id="galleryViewport"></div>
+          <button class="g-btn g-next" aria-label="Next slide">›</button>
+          <div class="g-dots" aria-label="Slide navigation" role="tablist"></div>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -234,7 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="thumb" style="background:url('https://images.unsplash.com/photo-1523419409543-a7ea49fa3da6?q=80&w=1400&auto=format&fit=crop') center/cover"></div>
           <h3>Water Damage</h3>
           <p>Extraction, drying, dehumidification, and structural repairs to stop secondary damage.</p>
-          <!-- CHANGED: point to your service URL for stronger internal link -->
           <div class="actions"><a class="btn" href="/water-damage">Learn More</a></div>
         </article>
         <article class="card">
@@ -253,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
   </section>
 
-  <!-- Three steps -->
+  <!-- Steps -->
   <section id="steps" class="section" style="background:#f1fbfc">
     <div class="container">
       <h2>Three Steps to Recovery</h2>
@@ -283,40 +222,20 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
   </section>
 
-  <!-- Why choose us -->
+  <!-- Why us -->
   <section id="why" class="section" style="background:#fff7d1">
     <div class="container">
-      <h2>Why Choose T&amp;A Services</h2>
+      <h2>Why Choose T&A Services</h2>
       <div class="grid cols-4">
-        <div class="card">
-          <div class="icon">✓</div>
-          <h3>Certified &amp; Trained</h3>
-          <p>Experienced crews using pro-grade equipment and best practices.</p>
-        </div>
-        <div class="card">
-          <div class="icon">📄</div>
-          <h3>Insurance Friendly</h3>
-          <p>We document thoroughly and help you move faster with your claim.</p>
-        </div>
-        <div class="card">
-          <div class="icon">⏱</div>
-          <h3>Available 24/7</h3>
-          <p>Emergency response when you need it—day or night.</p>
-        </div>
-        <div class="card">
-          <div class="icon">🤝</div>
-          <h3>Trusted Advisor</h3>
-          <p>Clear communication, from estimate to completion.</p>
-        </div>
+        <div class="card"><div class="icon">✓</div><h3>Certified &amp; Trained</h3><p>Experienced crews using pro-grade equipment and best practices.</p></div>
+        <div class="card"><div class="icon">📄</div><h3>Insurance Friendly</h3><p>We document thoroughly and help you move faster with your claim.</p></div>
+        <div class="card"><div class="icon">⏱</div><h3>Available 24/7</h3><p>Emergency response when you need it—day or night.</p></div>
+        <div class="card"><div class="icon">🤝</div><h3>Trusted Advisor</h3><p>Clear communication, from estimate to completion.</p></div>
       </div>
     </div>
   </section>
 
-
-
-
-  
-  <!-- Contact / CTA -->
+  <!-- Contact -->
   <section id="contact" class="section">
     <div class="container" style="display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center">
       <div>
@@ -328,9 +247,10 @@ document.addEventListener("DOMContentLoaded", function () {
           <li>Phone: <a href="tel:+17575678687">(757) 567-8687</a></li>
         </ul>
       </div>
+
+      <!-- Quick Contact card (moved under on mobile by script/CSS) -->
       <div class="card quick-contact">
         <h3 style="margin:0 0 .4rem">Quick Contact</h3>
-        <!-- Formspree-connected form (AJAX) -->
         <form class="lead-form" id="contactForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
           <input type="hidden" name="_subject" value="TAWaterServices — Quick Contact">
           <input type="text" name="_honeypot" style="display:none">
@@ -385,29 +305,23 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 
   <script>
-    // Toggle mobile menu
-    function toggleMenu(){
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
+    // Mobile menu
+    function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
 
     // AJAX submit for any form marked data-formspree
     document.querySelectorAll('form[data-formspree]').forEach(form => {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const note = form.querySelector('.note') || document.getElementById('formNote') || document.getElementById('leadNote');
+        const note = form.querySelector('.note');
         try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: new FormData(form)
-          });
+          const res = await fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) });
           if (res.ok) {
             if (note) { note.textContent = "Thanks! We’ll be in touch shortly."; note.style.display = 'block'; note.style.color = '#0e9f6e'; }
             form.reset();
           } else {
             if (note) { note.textContent = "Sorry—couldn’t send. Try again or call (757) 567-8687."; note.style.display = 'block'; note.style.color = '#d64545'; }
           }
-        } catch (err) {
+        } catch {
           if (note) { note.textContent = "Network error—please try again or call us."; note.style.display = 'block'; note.style.color = '#d64545'; }
         }
       });
@@ -415,269 +329,71 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Footer year
     document.getElementById('yr').textContent = new Date().getFullYear();
-    
-    // --- Minimal, accessible gallery ---
-    (function(){
-      const gal = document.querySelector('.ta-gallery');
-      if (!gal) return;
-    
-      const slides = Array.from(gal.querySelectorAll('.g-slide'));
-      const prevBtn = gal.querySelector('.g-prev');
-      const nextBtn = gal.querySelector('.g-next');
-      const dotsWrap = gal.querySelector('.g-dots');
-      let i = slides.findIndex(s => s.classList.contains('is-active'));
-      if (i < 0) i = 0;
-    
-      // Build dots
-      slides.forEach((_, idx)=>{
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('role','tab');
-        b.setAttribute('aria-label', `Go to slide ${idx+1}`);
-        b.addEventListener('click', ()=>go(idx));
-        dotsWrap.appendChild(b);
-      });
-    
-      function update(){
-        slides.forEach((s,idx)=>s.classList.toggle('is-active', idx===i));
-        dotsWrap.querySelectorAll('button').forEach((d,idx)=>{
-          d.setAttribute('aria-selected', idx===i ? 'true' : 'false');
-        });
-      }
-      function go(n){ i = (n + slides.length) % slides.length; update(); }
-      function next(){ go(i+1); }
-      function prev(){ go(i-1); }
-    
-      // Click image to advance
-      slides.forEach(s => s.addEventListener('click', next));
-    
-      // Buttons
-      if (nextBtn) nextBtn.addEventListener('click', next);
-      if (prevBtn) prevBtn.addEventListener('click', prev);
-    
-      // Keyboard
-      gal.addEventListener('keydown', (e)=>{
-        if (e.key === 'ArrowRight') next();
-        if (e.key === 'ArrowLeft') prev();
-      });
-      gal.setAttribute('tabindex','0'); // focusable for keyboard
-    
-      // Touch swipe
-      let startX = 0, dx = 0;
-      gal.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-      gal.addEventListener('touchmove',  e => { dx = e.touches[0].clientX - startX; }, {passive:true});
-      gal.addEventListener('touchend',   () => { if (dx < -40) next(); else if (dx > 40) prev(); dx = 0; });
-    
-      // Optional autoplay
-      if (gal.dataset.autoplay === 'true'){
-        setInterval(next, 5000);
-      }
-    
-      update();
-    })();
-    
-    (function(){
-      const viewport = document.getElementById('galleryViewport');
-      if (!viewport) return;
-    
-      // Configure how many images you have
-      const totalImages = 10; // change this to the number of photos in /assets/gallery
-      const slides = [];
-    
-      for (let i = 1; i <= totalImages; i++) {
-        const fig = document.createElement('figure');
-        fig.className = 'g-slide';
-        if (i === 1) fig.classList.add('is-active');
-    
-        const img = document.createElement('img');
-        img.src = `./assets/gallery/${i}.jpeg`; // assumes filenames: 1.jpeg, 2.jpeg...
-        img.loading = "lazy";
-        img.alt = `Gallery image ${i}`;
-    
-        const cap = document.createElement('figcaption');
-        cap.textContent = `Project ${i}`;
-    
-        fig.appendChild(img);
-        fig.appendChild(cap);
-        viewport.appendChild(fig);
-        slides.push(fig);
-      }
-    
-      // Now wire up navigation (same as before)
-      const gal = viewport.closest('.ta-gallery');
-      const prevBtn = gal.querySelector('.g-prev');
-      const nextBtn = gal.querySelector('.g-next');
-      const dotsWrap = gal.querySelector('.g-dots');
-      let i = 0;
-    
-      slides.forEach((_, idx)=>{
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('role','tab');
-        b.setAttribute('aria-label', `Go to slide ${idx+1}`);
-        b.addEventListener('click', ()=>go(idx));
-        dotsWrap.appendChild(b);
-      });
-    
-      function update(){
-        slides.forEach((s,idx)=>s.classList.toggle('is-active', idx===i));
-        dotsWrap.querySelectorAll('button').forEach((d,idx)=>{
-          d.setAttribute('aria-selected', idx===i ? 'true' : 'false');
-        });
-      }
-      function go(n){ i = (n + slides.length) % slides.length; update(); }
-      function next(){ go(i+1); }
-      function prev(){ go(i-1); }
-    
-      slides.forEach(s => s.addEventListener('click', next));
-      if (nextBtn) nextBtn.addEventListener('click', next);
-      if (prevBtn) prevBtn.addEventListener('click', prev);
-    
-      gal.addEventListener('keydown', (e)=>{
-        if (e.key === 'ArrowRight') next();
-        if (e.key === 'ArrowLeft') prev();
-      });
-      gal.setAttribute('tabindex','0');
-    
-      let startX = 0, dx = 0;
-      gal.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-      gal.addEventListener('touchmove',  e => { dx = e.touches[0].clientX - startX; }, {passive:true});
-      gal.addEventListener('touchend',   () => { if (dx < -40) next(); else if (dx > 40) prev(); dx = 0; });
-    
-      update();
-    })();
-    (function(){
-      const gal = document.querySelector('.ta-gallery');
-      if (!gal) return;
-      const supportsAspect = CSS.supports && CSS.supports('aspect-ratio','1 / 1');
-      if (!supportsAspect) {
-        gal.classList.add('no-aspect');
-      }
-    })();
 
-    /* Auto-build gallery from existing files.
-       Tries 1..50 with extensions: .jpg, .jpeg, .png, .webp
-       Only adds slides that actually load (no empty slots). */
+    /* --- Gallery: auto-build from /assets/gallery (1..50). Keep just this block. --- */
     (function(){
-      const basePath = './assets/gallery/';           // folder where your photos live
-      const candidateNames = Array.from({length:50}, (_,i)=> String(i+1)); // 1..50
-      const exts = ['jpg','jpeg','png','webp'];       // try in this order
-    
+      const basePath = './assets/gallery/';
+      const names = Array.from({length:50}, (_,i)=> String(i+1));
+      const exts = ['jpg','jpeg','png','webp'];
       const viewport = document.getElementById('galleryViewport');
       const gallery  = viewport?.closest('.ta-gallery');
       if (!viewport || !gallery) return;
-    
+
       const prevBtn = gallery.querySelector('.g-prev');
       const nextBtn = gallery.querySelector('.g-next');
-      const dotsWrap = gallery.querySelector('.g-dots');
-    
-      function canLoad(url){
-        return new Promise(resolve => {
-          const img = new Image();
-          img.onload  = () => resolve(true);
-          img.onerror = () => resolve(false);
-          img.src = url;
-        });
-      }
-    
-      async function firstExistingURL(stem){           // e.g., stem = "1" → try 1.jpg, 1.jpeg, ...
-        for (const ext of exts){
-          const url = `${basePath}${stem}.${ext}`;
-          if (await canLoad(url)) return url;
-        }
-        return null;
-      }
-    
+      const dots    = gallery.querySelector('.g-dots');
+
+      function canLoad(url){ return new Promise(r => { const i=new Image(); i.onload=()=>r(true); i.onerror=()=>r(false); i.src=url; }); }
+      async function firstURL(name){ for (const ext of exts){ const u=`${basePath}${name}.${ext}`; if (await canLoad(u)) return u; } return null; }
+
       (async function build(){
         const urls = [];
-        let consecutiveMisses = 0;
-    
-        for (const name of candidateNames){
-          const url = await firstExistingURL(name);
-          if (url){
-            urls.push(url);
-            consecutiveMisses = 0;
-          } else {
-            consecutiveMisses++;
-            // If we've already found some images and then hit 5 misses in a row, stop scanning
-            if (urls.length > 0 && consecutiveMisses >= 5) break;
-          }
+        let misses = 0;
+        for (const n of names){
+          const url = await firstURL(n);
+          if (url){ urls.push(url); misses = 0; } else if (urls.length && ++misses >= 5){ break; }
         }
-    
-        // If nothing found, hide the gallery section gracefully
-        if (urls.length === 0){
-          const section = document.getElementById('gallery') || gallery.closest('section');
-          if (section) section.style.display = 'none';
-          return;
-        }
-    
-        // Build slides only for existing images
+        if (!urls.length){ gallery.style.display='none'; return; }
+
         const slides = urls.map((src, idx) => {
           const fig = document.createElement('figure');
           fig.className = 'g-slide' + (idx===0 ? ' is-active' : '');
-    
-          const img = document.createElement('img');
-          img.src = src;
-          img.loading = 'lazy';
-          img.decoding = 'async';
-          img.alt = `Project photo ${idx+1}`;
-    
-          const cap = document.createElement('figcaption');
-          cap.textContent = `Project ${idx+1}`;
-    
-          fig.appendChild(img);
-          fig.appendChild(cap);
+          fig.innerHTML = `<img src="${src}" loading="lazy" decoding="async" alt="Project photo ${idx+1}"><figcaption>Project ${idx+1}</figcaption>`;
           viewport.appendChild(fig);
           return fig;
         });
-    
-        // Build dots
+
         urls.forEach((_, idx) => {
           const b = document.createElement('button');
-          b.type = 'button';
-          b.setAttribute('role', 'tab');
-          b.setAttribute('aria-label', `Go to slide ${idx+1}`);
-          b.addEventListener('click', () => go(idx));
-          dotsWrap.appendChild(b);
+          b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-label',`Go to slide ${idx+1}`);
+          b.addEventListener('click', ()=>go(idx));
+          dots.appendChild(b);
         });
-    
-        // Navigation logic
+
         let i = 0;
         function update(){
           slides.forEach((s,idx)=> s.classList.toggle('is-active', idx===i));
-          dotsWrap.querySelectorAll('button').forEach((d,idx)=>{
-            d.setAttribute('aria-selected', idx===i ? 'true' : 'false');
-          });
+          dots.querySelectorAll('button').forEach((d,idx)=> d.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
         }
         function go(n){ i = (n + slides.length) % slides.length; update(); }
         function next(){ go(i+1); }
         function prev(){ go(i-1); }
-    
+
         slides.forEach(s => s.addEventListener('click', next));
         if (nextBtn) nextBtn.addEventListener('click', next);
         if (prevBtn) prevBtn.addEventListener('click', prev);
-    
-        // Keyboard
-        gallery.addEventListener('keydown', (e)=>{
-          if (e.key === 'ArrowRight') next();
-          if (e.key === 'ArrowLeft')  prev();
-        });
+
+        gallery.addEventListener('keydown', e => { if (e.key==='ArrowRight') next(); if (e.key==='ArrowLeft') prev(); });
         gallery.setAttribute('tabindex','0');
-    
-        // Touch swipe
-        let startX = 0, dx = 0;
+
+        let startX=0, dx=0;
         gallery.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
         gallery.addEventListener('touchmove',  e => { dx = e.touches[0].clientX - startX; }, {passive:true});
         gallery.addEventListener('touchend',   () => { if (dx < -40) next(); else if (dx > 40) prev(); dx = 0; });
-    
+
         update();
       })();
     })();
-
-
-
-
-    
   </script>
 </body>
 </html>
