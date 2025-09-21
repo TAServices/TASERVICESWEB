@@ -157,7 +157,19 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
     </div>
     <div class="container" style="padding-bottom:30px">
-      <div class="hero-illus" aria-hidden="true"></div>
+  <div class="hero-gallery-wrap">
+    <div class="ta-gallery ta-gallery--sm" data-autoplay="false" data-aspect="3:4">
+      <h2 style="text-align:center; margin:0 0 10px;">Recent Work</h2>
+
+      <button class="g-btn g-prev" aria-label="Previous slide">‹</button>
+      <div class="g-viewport" id="galleryViewport"><!-- JS inserts slides --></div>
+      <button class="g-btn g-next" aria-label="Next slide">›</button>
+
+      <div class="g-dots" aria-label="Slide navigation" role="tablist"></div>
+    </div>
+  </div>
+</div>
+
     </div>
   </section>
 
@@ -248,23 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
   </section>
 
-<!-- Gallery -->
-<section id="gallery" class="section" aria-label="Project gallery">
-  <div class="container">
-    <h2>Recent Work</h2>
 
-    <div class="ta-gallery" data-autoplay="false" data-aspect="3:4">
-      <button class="g-btn g-prev" aria-label="Previous slide">‹</button>
-
-      <div class="g-viewport" id="galleryViewport">
-        <!-- JS will insert <figure> slides here -->
-      </div>
-
-      <button class="g-btn g-next" aria-label="Next slide">›</button>
-      <div class="g-dots" aria-label="Slide navigation" role="tablist"></div>
-    </div>
-  </div>
-</section>
 
 
   
