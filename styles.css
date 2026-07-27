@@ -82,7 +82,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   justify-content:center;
   gap:.5rem;
   padding: .8rem 1.4rem;
-  background: var(--orange);
+  background: var(--orange-dark); /* passes 4.5:1 with white text; brighter --orange does not */
   color: var(--white);
   font-weight: 700;
   border: none;
@@ -91,7 +91,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
   box-shadow: var(--shadow-sm);
 }
-.btn:hover{ background: var(--orange-dark); transform: translateY(-1px); }
+.btn:hover{ background: #a83e17; transform: translateY(-1px); }
 .btn.alt{
   background: var(--navy);
 }
@@ -367,6 +367,53 @@ footer{ background: var(--navy-deep); color: rgba(255,255,255,0.75); }
 .foot a:hover{ color: var(--orange); }
 .foot strong{ color: var(--white); }
 .bar{ border-top:1px solid rgba(255,255,255,0.1); padding: 16px 0; font-size:.85rem; }
+
+/* =========================================================
+   Inner-page hero (contact / services / water-damage)
+   ========================================================= */
+.hero-sm{
+  background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 60%, var(--teal) 130%);
+  color: var(--white);
+  padding: 40px 0 56px;
+}
+.hero-sm h1{ color: var(--white); margin-top:.4rem; }
+.hero-sm .muted{ color: rgba(255,255,255,0.75); }
+.breadcrumbs{
+  font-size:.85rem;
+  color: rgba(255,255,255,0.65);
+  margin: 0 0 .8rem;
+}
+.breadcrumbs a{ color: rgba(255,255,255,0.9); font-weight:600; }
+.breadcrumbs a:hover{ color: var(--orange); }
+.hero-sm .kickers{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem; }
+
+/* FAQ accordion */
+.faq details{
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 10px 0;
+}
+.faq summary{
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--navy-deep);
+  list-style: none;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::before{
+  content: "+";
+  display:inline-block;
+  width: 1.2em;
+  color: var(--orange-dark);
+  font-weight: 800;
+}
+.faq details[open] summary::before{ content: "–"; }
+.faq p{ margin: .6rem 0 0; color: var(--muted); }
+
+/* Simple content page (contact/services) */
+.page-section{ padding: 56px 0; }
 
 /* =========================================================
    Responsive
