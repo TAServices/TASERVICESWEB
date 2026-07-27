@@ -4,38 +4,127 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Contact | T&A Services</title>
+<meta name="description" content="Contact T&A Services for 24/7 water, mold, and storm damage restoration in Virginia Beach and Hampton Roads, VA. Free estimates.">
 <link rel="canonical" href="https://tawaterservices.com/contact">
-<style>
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;padding:24px;background:#f7fafb;color:#0b1b1d}
-  a{color:#00a3ad;text-decoration:none}
-  .wrap{max-width:900px;margin:0 auto}
-  header{display:flex;gap:12px;align-items:center;margin-bottom:16px}
-  header img{height:40px}
-  h1{margin:0 0 8px}
-  form{background:#fff;padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
-  label{display:block;margin-top:10px}
-  input,textarea{width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px}
-  button{margin-top:12px;padding:10px 14px;border-radius:12px;border:1px solid #00a3ad;background:#00a3ad;color:#fff;cursor:pointer}
-</style>
+<link rel="icon" href="/assets/logo.png" />
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<div class="wrap">
+
 <header>
-  <a href="/"><img src="/assets/logo.png" alt="T&A Services"></a>
-  <h1>Contact Us</h1>
+  <div class="container nav">
+    <a class="brand" href="/">
+      <img class="brand-logo" src="/assets/logo.png" alt="T&A Services logo" />
+      <div class="brand-name">T&A Services</div>
+    </a>
+    <nav class="navlinks">
+      <a href="/services">Services</a>
+      <a href="/#steps">How it works</a>
+      <a href="/#why">Why us</a>
+      <a href="/contact">Request Service</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn" href="tel:+17575678687">Call (757) 567-8687</a>
+      <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="/services" onclick="toggleMenu()">Services</a>
+    <a href="/#steps" onclick="toggleMenu()">How it works</a>
+    <a href="/#why" onclick="toggleMenu()">Why us</a>
+    <a href="/contact" onclick="toggleMenu()">Request Service</a>
+  </div>
 </header>
-<p>Have an emergency or need a free estimate? Email us anytime.</p>
-<p><a href="mailto:TAServices757@gmail.com">TAServices757@gmail.com</a></p>
 
-<form action="https://formspree.io/f/mandzqlj" method="POST">
-  <label>Name<input type="text" name="name" required></label>
-  <label>Email<input type="email" name="email" required></label>
-  <label>Phone<input type="tel" name="phone"></label>
-  <label>How can we help?<textarea name="message" rows="5" required></textarea></label>
-  <button type="submit">Send</button>
-</form>
+<section class="hero-sm">
+  <div class="container">
+    <nav class="breadcrumbs"><a href="/">Home</a> &nbsp;›&nbsp; Contact</nav>
+    <h1>Contact Us</h1>
+    <p class="muted">Have an emergency or need a free estimate? We respond 24/7 across Hampton Roads, VA.</p>
+  </div>
+</section>
 
-<p style="margin-top:16px"><a href="/">← Back to Home</a></p>
-</div>
+<section class="page-section">
+  <div class="container contact-grid">
+    <div>
+      <h2>Get in Touch</h2>
+      <p class="muted">Tell us what happened. We’ll respond quickly with next steps.</p>
+      <ul class="contact-list">
+        <li>Address: 929 Rudee Ct, Virginia Beach, VA 23451</li>
+        <li>Email: <a href="mailto:TAServices757@gmail.com">TAServices757@gmail.com</a></li>
+        <li>Phone: <a href="tel:+17575678687">(757) 567-8687</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 .4rem">Send a Message</h3>
+      <form class="lead-form" id="contactForm" method="POST" action="https://formspree.io/f/mandzqlj" data-formspree>
+        <input type="hidden" name="_subject" value="TAWaterServices — Contact Page">
+        <input type="text" name="_honeypot" style="display:none">
+        <div class="row">
+          <input required name="name" placeholder="Full name*" />
+          <input required name="phone" placeholder="Phone*" />
+        </div>
+        <input name="email" type="email" placeholder="Email" style="margin-bottom:10px" />
+        <textarea name="message" rows="4" placeholder="How can we help?"></textarea>
+        <button class="btn" type="submit">Send</button>
+        <div id="formNote" class="note" role="status" aria-live="polite" style="display:none"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <div>
+      <div class="brand" style="margin-bottom:8px">
+        <img class="brand-logo" src="/assets/logo.png" alt="T&A Services logo small" />
+        <div class="brand-name">T&A Services</div>
+      </div>
+      <small>Residential Restoration • Water • Mold • Weather</small>
+    </div>
+    <div>
+      <strong>Company</strong><br/>
+      <a href="/services">Services</a><br/>
+      <a href="/#why">Why us</a><br/>
+      <a href="/contact">Contact</a>
+    </div>
+    <div>
+      <strong>Contact</strong><br/>
+      <a href="tel:+17575678687">(757) 567-8687</a><br/>
+      <a href="mailto:TAServices757@gmail.com">TAServices757@gmail.com</a><br/>
+      Virginia Beach, VA
+    </div>
+  </div>
+  <div class="bar">
+    <div class="container">© <span id="yr"></span> T&A Services. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+<script>
+document.querySelectorAll('form[data-formspree]').forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const note = form.querySelector('.note');
+    try {
+      const res = await fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) });
+      if (res.ok) {
+        if (note) { note.textContent = "Thanks! We’ll be in touch shortly."; note.style.display = 'block'; note.style.color = '#0e9f6e'; }
+        form.reset();
+      } else {
+        if (note) { note.textContent = "Sorry—couldn’t send. Try again or call (757) 567-8687."; note.style.display = 'block'; note.style.color = '#d64545'; }
+      }
+    } catch {
+      if (note) { note.textContent = "Network error—please try again or call us."; note.style.display = 'block'; note.style.color = '#d64545'; }
+    }
+  });
+});
+</script>
 </body>
 </html>
