@@ -4,7 +4,7 @@
    Type: Archivo (display) / Inter (body)
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600;700&display=swap');
+/* Fonts are loaded via <link> in each page's <head> (faster than @import) */
 
 :root{
   /* brand */
@@ -130,6 +130,7 @@ header{
 }
 .brand{ display:flex; align-items:center; gap:.6rem; }
 .brand-logo{ height: 38px; width:auto; }
+.foot .brand-logo{ height: 32px; }
 .brand-name{ font-family:'Archivo'; font-weight:800; font-size:1.05rem; color: var(--navy-deep); }
 
 .navlinks{ display:flex; gap: 1.6rem; }
@@ -436,3 +437,53 @@ footer{ background: var(--navy-deep); color: rgba(255,255,255,0.75); }
   img, .thumb, .g-viewport{ max-width:100%; }
   body{ overflow-x:hidden; }
 }
+
+/* =========================================================
+   Additions: accessibility, mobile call bar, content pages
+   ========================================================= */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.skip-link{ position:absolute; left:-999px; top:8px; z-index:100; background:var(--navy-deep); color:#fff; padding:.6rem 1rem; border-radius:var(--radius-sm); }
+.skip-link:focus{ left:8px; }
+
+.lead-form label{ display:block; }
+.navlinks a[aria-current="page"]{ color: var(--orange-dark); }
+
+/* Sticky "tap to call" bar on phones — the header call button is hidden there */
+.call-bar{ display:none; }
+@media (max-width: 767px){
+  .call-bar{
+    display:flex; position:fixed; left:0; right:0; bottom:0; z-index:50;
+    gap:8px; padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+    background: var(--navy-deep); box-shadow: 0 -6px 16px -8px rgba(0,0,0,.4);
+  }
+  .call-bar a{ flex:1; justify-content:center; padding:.75rem .5rem; font-size:.95rem; }
+  .call-bar .btn.alt{ background:#fff; color:var(--navy-deep); }
+  body{ padding-bottom: 72px; }
+}
+
+/* Service area list */
+.areas{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:.6rem; }
+.areas li{ background:var(--white); border:1px solid var(--line); border-radius:999px; padding:.4rem .9rem; font-weight:600; color:var(--navy); font-size:.92rem; }
+
+/* Long-form content on service pages */
+.prose{ max-width: 760px; }
+.prose h2{ margin: 2.2rem 0 .8rem; }
+.prose h3{ margin: 1.4rem 0 .4rem; }
+.prose p, .prose li{ color: #3c525d; }
+.prose ul{ padding-left:1.2rem; line-height:1.8; }
+.two-col{ display:grid; grid-template-columns: 1.4fr .9fr; gap:40px; align-items:start; }
+.two-col .card{ position:sticky; top:96px; }
+.photo{ border-radius: var(--radius); overflow:hidden; margin: 0 0 1.4rem; box-shadow: var(--shadow-sm); }
+.photo img{ width:100%; height:auto; }
+.photo figcaption{ font-size:.85rem; color:var(--muted); padding:.5rem .2rem 0; }
+@media (max-width: 960px){ .two-col{ grid-template-columns:1fr; } .two-col .card{ position:static; } }
+
+/* Hero CTA readability on light sections */
+.on-fog .hero-phone, .section .hero-phone.dark{ color: var(--navy-deep); }
+.thumb-img{ display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius-sm); margin-bottom:14px; }
+.card h2 a, .card h3 a{ color:inherit; }
+.card h2 a:hover, .card h3 a:hover{ color:var(--orange-dark); }
+.ta-gallery .g-dots button[aria-current="true"]{ background: var(--orange); }
+.prose a, .contact-list a, .faq a{ color: var(--orange-dark); text-decoration: underline; text-underline-offset: 2px; }
+.section.on-navy .card p{ color: var(--muted); }
+.hero{ padding-bottom: 72px; }
